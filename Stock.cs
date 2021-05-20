@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace kwangwoonmoon
 {
-    class Stock
+    public class Stock
     {
         // 해당 Stock의 데이터를 담고있는 ListViewItem
         public System.Windows.Forms.ListViewItem ReferenceItem;

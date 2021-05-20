@@ -88,6 +88,7 @@ namespace kwangwoonmoon
             this.OKButton.TabIndex = 2;
             this.OKButton.Text = "확인";
             this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // EventNInfo
             // 
@@ -103,6 +104,8 @@ namespace kwangwoonmoon
             this.MinimumSize = new System.Drawing.Size(800, 700);
             this.Name = "EventNInfo";
             this.Text = "뉴스 / 정보";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EventNInfo_FormClosing);
+            this.Load += new System.EventHandler(this.EventNInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

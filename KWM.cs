@@ -30,6 +30,9 @@ namespace kwangwoonmoon
             }
         }
 
+        EventNInfo eventNInfo = null;
+
+
         public KWM()
         {
             InitializeComponent();
@@ -55,7 +58,11 @@ namespace kwangwoonmoon
 
         Event GetRandomEvent()
         {
-            return new Event();
+            //return new Event();
+            Event e = new Event();
+            e.EventTitle = "테스트 이벤트";
+            e.EventDescription = "이벤트 설명";
+            return e;
         }
 
         /*
@@ -66,11 +73,14 @@ namespace kwangwoonmoon
         {
             List<Event> newEvents = new List<Event>();
 
-            foreach (Event e in CurrentEvents)
+            if (CurrentEvents != null)
             {
-                foreach (Event ie in e.influenceEvent)
+                foreach (Event e in CurrentEvents)
                 {
-                    newEvents.Add(ie);
+                    foreach (Event ie in e.influenceEvent)
+                    {
+                        newEvents.Add(ie);
+                    }
                 }
             }
 
@@ -78,15 +88,13 @@ namespace kwangwoonmoon
             int targetEventSize = DefaultEventSize + random.Next(0, DefaultRandomEventSize + 1);
 
             // 이벤트 랜덤 생성
-            if (newEvents.Count < targetEventSize)
+            for (int i = newEvents.Count; i < targetEventSize; ++i)
             {
-                for (int i = newEvents.Count; i <= targetEventSize; ++i)
-                {
-                    newEvents.Add(GetRandomEvent());
-                }
+                newEvents.Add(GetRandomEvent());
             }
 
             events.Add(newEvents);
+            SetEventToEventNInfo();
 
             // Stock 등락률 업데이트
             foreach (Event e in newEvents)
@@ -95,6 +103,14 @@ namespace kwangwoonmoon
             }
 
             UpdateStock();
+        }
+
+        // EventNInfo 폼의 ListView에 이벤트 설정
+        void SetEventToEventNInfo()
+        {
+            if (eventNInfo == null) return;
+
+            eventNInfo.SetEventListView(CurrentEvents);
         }
 
 
@@ -109,5 +125,18 @@ namespace kwangwoonmoon
             }
         }
 
+        private void news_button_Click(object sender, EventArgs e)
+        {
+            if (eventNInfo == null)
+            {
+                eventNInfo = new EventNInfo();
+                eventNInfo.Owner = this;
+
+                SetEventToEventNInfo();
+            }
+
+            eventNInfo.Show();
+            eventNInfo.Focus();
+        }
     }
 }

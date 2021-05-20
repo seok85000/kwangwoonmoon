@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace kwangwoonmoon
 {
-    class Event
+    public class Event
     {
         // 제목
-        public string EventTitle { get; private set; }
+        public string EventTitle;
 
         // 정보
-        public string EventDescription { get; private set; }
+        public string EventDescription;
 
         // 영향을 주는 종목
-        public List<Stock> influenceStock = null;
+        public List<Stock> influenceStock = new List<Stock>();
 
         // 영향을 주는 이벤트
-        public List<Event> influenceEvent = null;
+        public List<Event> influenceEvent = new List<Event>();
 
         // 영향을 주는 정도
-        public float InfluencePower { get; private set; }
+        public float InfluencePower;
         // 랜덤 요소
         public const float InfluenceRandomPower = 1.5f;
 
