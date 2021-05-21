@@ -173,6 +173,7 @@ namespace kwangwoonmoon
             this.total_amount_textbox.Name = "total_amount_textbox";
             this.total_amount_textbox.Size = new System.Drawing.Size(135, 21);
             this.total_amount_textbox.TabIndex = 12;
+            this.total_amount_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
             // 
@@ -231,6 +232,7 @@ namespace kwangwoonmoon
             this.plus_button.TabIndex = 18;
             this.plus_button.Text = "+1";
             this.plus_button.UseVisualStyleBackColor = true;
+            this.plus_button.Click += new System.EventHandler(this.plus_button_Click);
             // 
             // minus_button
             // 
@@ -240,6 +242,7 @@ namespace kwangwoonmoon
             this.minus_button.TabIndex = 19;
             this.minus_button.Text = "-1";
             this.minus_button.UseVisualStyleBackColor = true;
+            this.minus_button.Click += new System.EventHandler(this.minus_button_Click);
             // 
             // gameturn_label
             // 
@@ -257,7 +260,7 @@ namespace kwangwoonmoon
             this.mymoney_label.AutoSize = true;
             this.mymoney_label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.mymoney_label.Font = new System.Drawing.Font("굴림", 15F);
-            this.mymoney_label.Location = new System.Drawing.Point(204, 437);
+            this.mymoney_label.Location = new System.Drawing.Point(219, 437);
             this.mymoney_label.Name = "mymoney_label";
             this.mymoney_label.Size = new System.Drawing.Size(122, 20);
             this.mymoney_label.TabIndex = 8;
