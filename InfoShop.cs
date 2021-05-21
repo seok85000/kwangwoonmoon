@@ -17,6 +17,11 @@ namespace kwangwoonmoon
             InitializeComponent();
         }
 
+        public void SetEventNews(Event e)
+        {
+            this.News_label.Text = e.EventTitle;
+        }
+
         private void OK_button_Click(object sender, EventArgs e)
         {
             Hide();

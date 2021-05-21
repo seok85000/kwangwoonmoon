@@ -13,6 +13,8 @@ namespace kwangwoonmoon
     public partial class KWM : Form
     {
         public int Turn { get; private set; } = 0;
+        // 게임이 종료되는 마지막 턴
+        public const int LASTTURN = 50;
 
         List<Stock> stocks = new List<Stock>();
 
@@ -34,6 +36,8 @@ namespace kwangwoonmoon
 
         InfoShop infoShop = null;
 
+        public ulong CurrentMoney = 123456789;
+
 
         public KWM()
         {
@@ -42,6 +46,8 @@ namespace kwangwoonmoon
         private void KWM_Load(object sender, EventArgs e)
         {
             NextTurn();
+            this.finish_label.Text = "/ " + LASTTURN.ToString();
+            this.mymoney_label.Text = String.Format("{0:#,###}", CurrentMoney);
         }
 
 
@@ -52,6 +58,10 @@ namespace kwangwoonmoon
             UpdateEvent();
 
             ++Turn;
+
+            if (Turn < 10) gameturn_label.Text = "0" + Turn.ToString();
+            else if (Turn > 50) gameturn_label.Text = LASTTURN.ToString();
+            else gameturn_label.Text = Turn.ToString();
         }
 
 
@@ -141,6 +151,17 @@ namespace kwangwoonmoon
             eventNInfo.Focus();
         }
 
+
+        // Shop
+
+        // InfoShop 폼의 NewsLabel에 이벤트 설정
+        void SetEventToInfoShop()
+        {
+            if (infoShop == null) return;
+
+            infoShop.SetEventNews(CurrentEvents[CurrentEvents.Count - 1]);
+        }
+
         private void info_shop_button_Click(object sender, EventArgs e)
         {
             if (infoShop == null)
@@ -148,6 +169,8 @@ namespace kwangwoonmoon
                 infoShop = new InfoShop();
                 infoShop.Owner = this;
             }
+
+            SetEventToInfoShop();
 
             infoShop.Show();
             infoShop.Focus();

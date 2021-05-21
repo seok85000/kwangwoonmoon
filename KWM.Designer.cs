@@ -34,10 +34,9 @@ namespace kwangwoonmoon
             this.today_label = new System.Windows.Forms.Label();
             this.gametime_label = new System.Windows.Forms.Label();
             this.nowTurn_label = new System.Windows.Forms.Label();
-            this.gameturn_label = new System.Windows.Forms.Label();
+            this.finish_label = new System.Windows.Forms.Label();
             this.buy_button = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.mymoney_label = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.mystock_listview = new System.Windows.Forms.ListView();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,6 +48,9 @@ namespace kwangwoonmoon
             this.info_shop_button = new System.Windows.Forms.Button();
             this.plus_button = new System.Windows.Forms.Button();
             this.minus_button = new System.Windows.Forms.Button();
+            this.gameturn_label = new System.Windows.Forms.Label();
+            this.mymoney_label = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labe1
@@ -103,16 +105,16 @@ namespace kwangwoonmoon
             this.nowTurn_label.TabIndex = 4;
             this.nowTurn_label.Text = "턴 수";
             // 
-            // gameturn_label
+            // finish_label
             // 
-            this.gameturn_label.AutoSize = true;
-            this.gameturn_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.gameturn_label.Font = new System.Drawing.Font("굴림", 15F);
-            this.gameturn_label.Location = new System.Drawing.Point(1122, 98);
-            this.gameturn_label.Name = "gameturn_label";
-            this.gameturn_label.Size = new System.Drawing.Size(65, 20);
-            this.gameturn_label.TabIndex = 5;
-            this.gameturn_label.Text = "1 / 50";
+            this.finish_label.AutoSize = true;
+            this.finish_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.finish_label.Font = new System.Drawing.Font("굴림", 15F);
+            this.finish_label.Location = new System.Drawing.Point(1146, 96);
+            this.finish_label.Name = "finish_label";
+            this.finish_label.Size = new System.Drawing.Size(47, 20);
+            this.finish_label.TabIndex = 5;
+            this.finish_label.Text = "/ 50";
             // 
             // buy_button
             // 
@@ -135,18 +137,6 @@ namespace kwangwoonmoon
             this.label1.Size = new System.Drawing.Size(143, 20);
             this.label1.TabIndex = 7;
             this.label1.Text = "현재 보유 금액";
-            // 
-            // mymoney_label
-            // 
-            this.mymoney_label.AutoSize = true;
-            this.mymoney_label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.mymoney_label.Font = new System.Drawing.Font("굴림", 15F);
-            this.mymoney_label.Location = new System.Drawing.Point(271, 437);
-            this.mymoney_label.Name = "mymoney_label";
-            this.mymoney_label.Size = new System.Drawing.Size(498, 20);
-            this.mymoney_label.TabIndex = 8;
-            this.mymoney_label.Text = "                          \\ 123,456,789                        ";
-            this.mymoney_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -251,11 +241,48 @@ namespace kwangwoonmoon
             this.minus_button.Text = "-1";
             this.minus_button.UseVisualStyleBackColor = true;
             // 
+            // gameturn_label
+            // 
+            this.gameturn_label.AutoSize = true;
+            this.gameturn_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.gameturn_label.Font = new System.Drawing.Font("굴림", 15F);
+            this.gameturn_label.Location = new System.Drawing.Point(1119, 96);
+            this.gameturn_label.Name = "gameturn_label";
+            this.gameturn_label.Size = new System.Drawing.Size(31, 20);
+            this.gameturn_label.TabIndex = 20;
+            this.gameturn_label.Text = "01";
+            // 
+            // mymoney_label
+            // 
+            this.mymoney_label.AutoSize = true;
+            this.mymoney_label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.mymoney_label.Font = new System.Drawing.Font("굴림", 15F);
+            this.mymoney_label.Location = new System.Drawing.Point(204, 437);
+            this.mymoney_label.Name = "mymoney_label";
+            this.mymoney_label.Size = new System.Drawing.Size(122, 20);
+            this.mymoney_label.TabIndex = 8;
+            this.mymoney_label.Text = "123,456,789";
+            this.mymoney_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label6.Font = new System.Drawing.Font("굴림", 15F);
+            this.label6.Location = new System.Drawing.Point(177, 437);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(720, 20);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "\\                                                                                " +
+    "                원";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // KWM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1236, 686);
+            this.Controls.Add(this.gameturn_label);
             this.Controls.Add(this.minus_button);
             this.Controls.Add(this.plus_button);
             this.Controls.Add(this.info_shop_button);
@@ -268,9 +295,10 @@ namespace kwangwoonmoon
             this.Controls.Add(this.mystock_listview);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.mymoney_label);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buy_button);
-            this.Controls.Add(this.gameturn_label);
+            this.Controls.Add(this.finish_label);
             this.Controls.Add(this.nowTurn_label);
             this.Controls.Add(this.gametime_label);
             this.Controls.Add(this.today_label);
@@ -292,10 +320,9 @@ namespace kwangwoonmoon
         private System.Windows.Forms.Label today_label;
         private System.Windows.Forms.Label gametime_label;
         private System.Windows.Forms.Label nowTurn_label;
-        private System.Windows.Forms.Label gameturn_label;
+        private System.Windows.Forms.Label finish_label;
         private System.Windows.Forms.Button buy_button;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label mymoney_label;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListView mystock_listview;
         private System.Windows.Forms.Label label3;
@@ -307,6 +334,9 @@ namespace kwangwoonmoon
         private System.Windows.Forms.Button info_shop_button;
         private System.Windows.Forms.Button plus_button;
         private System.Windows.Forms.Button minus_button;
+        private System.Windows.Forms.Label gameturn_label;
+        private System.Windows.Forms.Label mymoney_label;
+        private System.Windows.Forms.Label label6;
     }
 }
 
