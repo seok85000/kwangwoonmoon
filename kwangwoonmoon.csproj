@@ -53,6 +53,12 @@
     <Compile Include="EventNInfo.Designer.cs">
       <DependentUpon>EventNInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="InfoShop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoShop.Designer.cs">
+      <DependentUpon>InfoShop.cs</DependentUpon>
+    </Compile>
     <Compile Include="KWM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
     <Compile Include="Stock.cs" />
     <EmbeddedResource Include="EventNInfo.resx">
       <DependentUpon>EventNInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoShop.resx">
+      <DependentUpon>InfoShop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KWM.resx">
       <DependentUpon>KWM.cs</DependentUpon>

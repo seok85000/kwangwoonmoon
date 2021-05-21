@@ -231,6 +231,7 @@ namespace kwangwoonmoon
             this.info_shop_button.TabIndex = 17;
             this.info_shop_button.Text = "정보 상점";
             this.info_shop_button.UseVisualStyleBackColor = true;
+            this.info_shop_button.Click += new System.EventHandler(this.info_shop_button_Click);
             // 
             // plus_button
             // 

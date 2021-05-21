@@ -32,6 +32,8 @@ namespace kwangwoonmoon
 
         EventNInfo eventNInfo = null;
 
+        InfoShop infoShop = null;
+
 
         public KWM()
         {
@@ -137,6 +139,18 @@ namespace kwangwoonmoon
 
             eventNInfo.Show();
             eventNInfo.Focus();
+        }
+
+        private void info_shop_button_Click(object sender, EventArgs e)
+        {
+            if (infoShop == null)
+            {
+                infoShop = new InfoShop();
+                infoShop.Owner = this;
+            }
+
+            infoShop.Show();
+            infoShop.Focus();
         }
     }
 }
