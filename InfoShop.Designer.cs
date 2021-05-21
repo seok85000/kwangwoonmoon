@@ -117,7 +117,7 @@ namespace kwangwoonmoon
             this.MiddleInfo_button.Name = "MiddleInfo_button";
             this.MiddleInfo_button.Size = new System.Drawing.Size(75, 23);
             this.MiddleInfo_button.TabIndex = 2;
-            this.MiddleInfo_button.Text = "\\5,000";
+            this.MiddleInfo_button.Text = "5,000";
             this.MiddleInfo_button.UseVisualStyleBackColor = true;
             this.MiddleInfo_button.Click += new System.EventHandler(this.MiddleInfo_button_Click);
             // 
@@ -127,7 +127,7 @@ namespace kwangwoonmoon
             this.AdvanceInfo_button.Name = "AdvanceInfo_button";
             this.AdvanceInfo_button.Size = new System.Drawing.Size(75, 23);
             this.AdvanceInfo_button.TabIndex = 2;
-            this.AdvanceInfo_button.Text = "w12,000";
+            this.AdvanceInfo_button.Text = "12,000";
             this.AdvanceInfo_button.UseVisualStyleBackColor = true;
             this.AdvanceInfo_button.Click += new System.EventHandler(this.AdvanceInfo_button_Click);
             // 
@@ -148,9 +148,9 @@ namespace kwangwoonmoon
             this.Mymoney_label.Font = new System.Drawing.Font("굴림", 10F);
             this.Mymoney_label.Location = new System.Drawing.Point(206, 89);
             this.Mymoney_label.Name = "Mymoney_label";
-            this.Mymoney_label.Size = new System.Drawing.Size(167, 14);
+            this.Mymoney_label.Size = new System.Drawing.Size(175, 14);
             this.Mymoney_label.TabIndex = 3;
-            this.Mymoney_label.Text = "                                ";
+            this.Mymoney_label.Text = "                0                ";
             // 
             // News_label
             // 

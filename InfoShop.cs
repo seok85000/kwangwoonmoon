@@ -24,26 +24,13 @@ namespace kwangwoonmoon
         
         private void MiddleInfo_button_Click(object sender, EventArgs e)
         {
-            if(Convert.ToInt32(Mymoney_label.Text) >= Convert.ToInt32(MiddleInfo_button.Text))
-            {
-                
-            }
-            else
-            {
-                MessageBox.Show("보유 금액이 부족합니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            MessageBox.Show("보유 금액이 부족합니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void AdvanceInfo_button_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(Mymoney_label.Text) >= Convert.ToInt32(AdvanceInfo_button.Text))
-            {
-
-            }
-            else
-            {
-                MessageBox.Show("보유 금액이 부족합니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            MessageBox.Show("보유 금액이 부족합니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
         }
     }
 }
