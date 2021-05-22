@@ -12,6 +12,10 @@ namespace kwangwoonmoon
 {
     public partial class KWM : Form
     {
+        public static KWM Instance = null;
+
+        public Action MoneyChanged;
+
         public int Turn { get; private set; } = 0;
         // 게임이 종료되는 마지막 턴
         public const int LASTTURN = 50;
@@ -36,13 +40,21 @@ namespace kwangwoonmoon
 
         InfoShop infoShop = null;
 
-        public ulong CurrentMoney = 123456789;
+        public ulong CurrentMoney { get; private set; } = 123456789;
 
 
         public KWM()
         {
             InitializeComponent();
+
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+
+            MoneyChanged += UpdateMoneyText;
         }
+
         private void KWM_Load(object sender, EventArgs e)
         {
             NextTurn();
@@ -154,15 +166,12 @@ namespace kwangwoonmoon
             if (infoShop == null) return;
 
             infoShop.SetEventNews(CurrentEvents[CurrentEvents.Count - 1]);
-            infoShop.SetMyMoney(CurrentMoney);
             infoShop.SetBuyCount();
         }
 
-        // InfoShop 에서 정보 구매시 보유 금액 변경
-        public void SetMoney(object obj, EventArgs e)
+        void UpdateMoneyText()
         {
-            InfoShop shop = obj as InfoShop;
-            this.mymoney_label.Text = string.Format("{0:#,###}", shop.money);
+            mymoney_label.Text = string.Format("{0:#,###}", CurrentMoney);
         }
 
         private void info_shop_button_Click(object sender, EventArgs e)
@@ -171,13 +180,28 @@ namespace kwangwoonmoon
             {
                 infoShop = new InfoShop();
                 infoShop.Owner = this;
-                infoShop.Changed += new EventHandler(SetMoney);
             }
 
             SetToInfoShop();
 
             infoShop.Show();
             infoShop.Focus();
+        }
+
+
+        // Money
+
+        public bool UseMoney(ulong money)
+        {
+            if (CurrentMoney >= money)
+            {
+                CurrentMoney -= money;
+
+                MoneyChanged.Invoke();
+
+                return true;
+            }
+            return false;
         }
 
 
@@ -199,6 +223,7 @@ namespace kwangwoonmoon
 
         private void plus_button_Click(object sender, EventArgs e)
         {
+            UseMoney(30);
             total_amount_textbox.Text = (Convert.ToInt32(total_amount_textbox.Text) + 1).ToString();
             // 수량에 증가에 따른 총액 업데이트 필요
         }

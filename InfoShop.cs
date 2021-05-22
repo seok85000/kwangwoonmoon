@@ -16,21 +16,21 @@ namespace kwangwoonmoon
         public const int MIDDLE = 5000;
         public const int ADVANCE = 12000;
 
-        // 현재 보유 금액
-        public ulong money = 0;
-
         // 정보 구매 가능 횟수
         public int Count { get; private set; }
 
-        public event EventHandler Changed;
 
         public InfoShop()
         {
             InitializeComponent();
+
+            KWM.Instance.MoneyChanged += UpdateMoneyText;
         }
 
         private void InfoShop_Load(object sender, EventArgs e)
         {
+            UpdateMoneyText();
+
             this.AdvanceInfo_button.Text = string.Format("{0:#,###}", ADVANCE);
             this.MiddleInfo_button.Text = string.Format("{0:#,###}", MIDDLE);
         }
@@ -40,10 +40,9 @@ namespace kwangwoonmoon
             this.News_label.Text = e.EventTitle;
         }
 
-        public void SetMyMoney(ulong money)
+        void UpdateMoneyText()
         {
-            this.money = money;
-            this.Mymoney_label.Text = string.Format("{0:#,###}", money);
+            Mymoney_label.Text = string.Format("{0:#,###}", KWM.Instance.CurrentMoney);
         }
 
         public void SetBuyCount()
@@ -63,18 +62,10 @@ namespace kwangwoonmoon
         {
             if (this.Count > 0)
             {
-                if (money >= MIDDLE)
+                if (KWM.Instance.UseMoney(MIDDLE))
                 {
-                    money -= MIDDLE;
-
                     //  정보 제공해주는 창 구현 필요
                     MessageBox.Show("테스트 중급 정보");
-
-                    SetMyMoney(money);
-                    if (Changed != null)
-                    {
-                        Changed(this, new EventArgs());
-                    }
                     this.Count--;
                 }
                 else MessageBox.Show("보유 금액이 부족합니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -86,18 +77,10 @@ namespace kwangwoonmoon
         {
             if (this.Count > 0)
             {
-                if (money >= ADVANCE)
+                if (KWM.Instance.UseMoney(ADVANCE))
                 {
-                    money -= ADVANCE;
-
                     // 정보 제공해주는 창 구현 필요
                     MessageBox.Show("테스트 고급 정보");
-
-                    SetMyMoney(money);
-                    if (Changed != null)
-                    {
-                        Changed(this, new EventArgs());
-                    }
                 }
                 else MessageBox.Show("보유 금액이 부족합니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
