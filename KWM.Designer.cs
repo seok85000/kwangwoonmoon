@@ -169,11 +169,13 @@ namespace kwangwoonmoon
             // 
             // total_amount_textbox
             // 
+            this.total_amount_textbox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.total_amount_textbox.Location = new System.Drawing.Point(983, 496);
             this.total_amount_textbox.Name = "total_amount_textbox";
             this.total_amount_textbox.Size = new System.Drawing.Size(135, 21);
             this.total_amount_textbox.TabIndex = 12;
             this.total_amount_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.total_amount_textbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.number_textbox_KeyPress);
             // 
             // label4
             // 
@@ -187,10 +189,12 @@ namespace kwangwoonmoon
             // 
             // total_price_textbox
             // 
+            this.total_price_textbox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.total_price_textbox.Location = new System.Drawing.Point(983, 538);
             this.total_price_textbox.Name = "total_price_textbox";
             this.total_price_textbox.Size = new System.Drawing.Size(135, 21);
             this.total_price_textbox.TabIndex = 14;
+            this.total_price_textbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.number_textbox_KeyPress);
             // 
             // sell_button
             // 

@@ -209,5 +209,13 @@ namespace kwangwoonmoon
             else total_amount_textbox.Text = (Convert.ToInt32(total_amount_textbox.Text) - 1).ToString();
             // 수량에 감소에 따른 총액 업데이트 필요
         }
+
+        private void number_textbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
