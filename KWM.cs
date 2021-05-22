@@ -22,6 +22,7 @@ namespace kwangwoonmoon
         public const int LASTTURN = 50;
 
         List<Stock> stocks = new List<Stock>();
+        List<Stock> myStocks = new List<Stock>();
 
         public static int DefaultEventSize = 3;
         public static int DefaultRandomEventSize = 2;
@@ -68,6 +69,11 @@ namespace kwangwoonmoon
 
             mystock_listview.Columns.Add(StockColumType.StockBuyPrice.ToString(), "매입가");
             mystock_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+
+            // For Test
+            myStocks.Add(new Stock("삼성전자", 10000));
+            SetEventListView();
         }
         private void KWM_Load(object sender, EventArgs e)
         {
@@ -179,12 +185,10 @@ namespace kwangwoonmoon
 
 
         //mystock_listview 리스트 뷰 컬럼 정의
-        void SetEventListView(List<Stock> stocks)
+        void SetEventListView()
         {
-            if (stocks == null) return;
-
             mystock_listview.Items.Clear();
-            foreach (Stock s in stocks)
+            foreach (Stock s in myStocks)
             {
                 ListViewItem item = mystock_listview.Items.Add(new ListViewItem());
                 item.Name = StockColumType.StockName.ToString();
@@ -206,6 +210,9 @@ namespace kwangwoonmoon
                 var nowprice = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 nowprice.Name = StockColumType.StockBuyPrice.ToString();
                 nowprice.Text = s.StockBuyPrice.ToString();
+
+                item.Tag = s;
+                s.ReferenceMyStock = item;
             }
 
             //eventListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -284,6 +291,13 @@ namespace kwangwoonmoon
             return false;
         }
 
+        public void AddMoney(ulong money)
+        {
+            CurrentMoney += money;
+
+            MoneyChanged.Invoke();
+        }
+
 
         // Button Events
 
@@ -332,42 +346,29 @@ namespace kwangwoonmoon
 
 
             }
-
             else
             {
                 ListViewItem lvi = mystock_listview.SelectedItems[0];
-                string strRe = mymoney_label.Text.Replace(",", "");
+                Stock stock = (Stock)lvi.Tag;
 
-                ulong stockWantQuantity = Convert.ToUInt64(total_amount_textbox.Text);
-                ulong StockNowQuantity = Convert.ToUInt64(lvi.SubItems[2].Text, CultureInfo.InvariantCulture);
-                if (stockWantQuantity > StockNowQuantity)
+                int stockWantQuantity = Convert.ToInt32(total_amount_textbox.Text);
+                if (stockWantQuantity > stock.StockQuantity)
                 {
                     MessageBox.Show("판매 가능 수량을 초과하였습니다.", "판매 수량 초과", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-
                 else
                 {
+                    ulong totalBenefit = (ulong)stockWantQuantity * (stock.StockPrice - stock.StockBuyPrice);
+                    AddMoney(totalBenefit);
 
-                    ulong StockNowPrice = Convert.ToUInt64(lvi.SubItems[3].Text, CultureInfo.InvariantCulture);
-                    ulong StockBuyPrice = Convert.ToUInt64(lvi.SubItems[4].Text, CultureInfo.InvariantCulture);
-                    ulong nowbenefit = stockWantQuantity * StockNowPrice;
-                    ulong YourBenefit = stockWantQuantity * StockBuyPrice;
-                    ulong NowBalance = Convert.ToUInt64(strRe);
-                    ulong TotalBenefit = nowbenefit - YourBenefit;
-                    ulong Afterbalance = NowBalance + TotalBenefit;
-                    CurrentMoney = Convert.ToUInt64(Afterbalance);
-                    mymoney_label.Text = CurrentMoney.ToString();
-                    ulong AfterQuantatiy = StockNowQuantity - stockWantQuantity;
-                    lvi.SubItems[2].Text = AfterQuantatiy.ToString();
-                    ClearInputControl();
-                    if (AfterQuantatiy <= 0)
+                    stock.DecreaseStockQuantity(stockWantQuantity);
+                    lvi.SubItems[StockColumType.StockQuantity.ToString()].Text = stock.StockQuantity.ToString();
+                    if (stock.StockQuantity <= 0)
                     {
+                        ClearInputControl();
                         mystock_listview.Items.Remove(lvi);
                     }
-                    UpdateMoneyText();
                 }
-
             }
         }
     }

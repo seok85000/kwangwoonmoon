@@ -29,12 +29,6 @@ namespace kwangwoonmoon
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "삼성전자",
-            "",
-            "20",
-            "80100",
-            "90000"}, -1);
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -67,9 +61,9 @@ namespace kwangwoonmoon
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("굴림", 15F);
-            this.label8.Location = new System.Drawing.Point(1063, 592);
+            this.label8.Location = new System.Drawing.Point(930, 474);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(225, 25);
+            this.label8.Size = new System.Drawing.Size(180, 20);
             this.label8.TabIndex = 51;
             this.label8.Text = "거래하시겠습니까?";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -78,9 +72,9 @@ namespace kwangwoonmoon
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("굴림", 15F);
-            this.label10.Location = new System.Drawing.Point(1260, 536);
+            this.label10.Location = new System.Drawing.Point(1102, 429);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(128, 25);
+            this.label10.Size = new System.Drawing.Size(103, 20);
             this.label10.TabIndex = 50;
             this.label10.Text = "원 입니다.";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -89,9 +83,9 @@ namespace kwangwoonmoon
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("굴림", 15F);
-            this.label9.Location = new System.Drawing.Point(1296, 441);
+            this.label9.Location = new System.Drawing.Point(1134, 353);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 25);
+            this.label9.Size = new System.Drawing.Size(56, 20);
             this.label9.TabIndex = 49;
             this.label9.Text = "이고,";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -100,9 +94,9 @@ namespace kwangwoonmoon
             // 
             this.lb_Selected.BackColor = System.Drawing.Color.White;
             this.lb_Selected.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Bold);
-            this.lb_Selected.Location = new System.Drawing.Point(1063, 433);
+            this.lb_Selected.Location = new System.Drawing.Point(930, 346);
             this.lb_Selected.Name = "lb_Selected";
-            this.lb_Selected.Size = new System.Drawing.Size(244, 41);
+            this.lb_Selected.Size = new System.Drawing.Size(214, 33);
             this.lb_Selected.TabIndex = 48;
             this.lb_Selected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -111,9 +105,9 @@ namespace kwangwoonmoon
             this.lb_SelectedStock.AutoSize = true;
             this.lb_SelectedStock.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lb_SelectedStock.Font = new System.Drawing.Font("굴림", 15F);
-            this.lb_SelectedStock.Location = new System.Drawing.Point(1082, 433);
+            this.lb_SelectedStock.Location = new System.Drawing.Point(947, 346);
             this.lb_SelectedStock.Name = "lb_SelectedStock";
-            this.lb_SelectedStock.Size = new System.Drawing.Size(0, 25);
+            this.lb_SelectedStock.Size = new System.Drawing.Size(0, 20);
             this.lb_SelectedStock.TabIndex = 47;
             this.lb_SelectedStock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -121,9 +115,9 @@ namespace kwangwoonmoon
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("굴림", 15F);
-            this.label7.Location = new System.Drawing.Point(1063, 491);
+            this.label7.Location = new System.Drawing.Point(930, 393);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(303, 25);
+            this.label7.Size = new System.Drawing.Size(243, 20);
             this.label7.TabIndex = 46;
             this.label7.Text = "선택하신 종목의 시장가는";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -132,29 +126,27 @@ namespace kwangwoonmoon
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("굴림", 15F);
-            this.label5.Location = new System.Drawing.Point(1313, 265);
+            this.label5.Location = new System.Drawing.Point(1149, 212);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 25);
+            this.label5.Size = new System.Drawing.Size(29, 20);
             this.label5.TabIndex = 45;
             this.label5.Text = "원";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // info_shop_button
             // 
-            this.info_shop_button.Location = new System.Drawing.Point(834, 18);
-            this.info_shop_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.info_shop_button.Location = new System.Drawing.Point(730, 14);
             this.info_shop_button.Name = "info_shop_button";
-            this.info_shop_button.Size = new System.Drawing.Size(201, 64);
+            this.info_shop_button.Size = new System.Drawing.Size(176, 51);
             this.info_shop_button.TabIndex = 44;
             this.info_shop_button.Text = "정보 상점";
             this.info_shop_button.UseVisualStyleBackColor = true;
             // 
             // news_button
             // 
-            this.news_button.Location = new System.Drawing.Point(617, 18);
-            this.news_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.news_button.Location = new System.Drawing.Point(540, 14);
             this.news_button.Name = "news_button";
-            this.news_button.Size = new System.Drawing.Size(201, 64);
+            this.news_button.Size = new System.Drawing.Size(176, 51);
             this.news_button.TabIndex = 43;
             this.news_button.Text = "뉴스 / 정보";
             this.news_button.UseVisualStyleBackColor = true;
@@ -164,10 +156,9 @@ namespace kwangwoonmoon
             this.sell_button.BackColor = System.Drawing.Color.DarkBlue;
             this.sell_button.Font = new System.Drawing.Font("굴림", 20F);
             this.sell_button.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.sell_button.Location = new System.Drawing.Point(1232, 761);
-            this.sell_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.sell_button.Location = new System.Drawing.Point(1078, 609);
             this.sell_button.Name = "sell_button";
-            this.sell_button.Size = new System.Drawing.Size(165, 80);
+            this.sell_button.Size = new System.Drawing.Size(144, 64);
             this.sell_button.TabIndex = 42;
             this.sell_button.Text = "매도";
             this.sell_button.UseVisualStyleBackColor = false;
@@ -177,9 +168,9 @@ namespace kwangwoonmoon
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("굴림", 15F);
-            this.label4.Location = new System.Drawing.Point(1063, 398);
+            this.label4.Location = new System.Drawing.Point(930, 318);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(195, 25);
+            this.label4.Size = new System.Drawing.Size(156, 20);
             this.label4.TabIndex = 40;
             this.label4.Text = "선택하신 종목은";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -188,9 +179,9 @@ namespace kwangwoonmoon
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("굴림", 15F);
-            this.label3.Location = new System.Drawing.Point(1063, 661);
+            this.label3.Location = new System.Drawing.Point(930, 529);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 25);
+            this.label3.Size = new System.Drawing.Size(49, 20);
             this.label3.TabIndex = 38;
             this.label3.Text = "수량";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -198,13 +189,10 @@ namespace kwangwoonmoon
             // mystock_listview
             // 
             this.mystock_listview.HideSelection = false;
-            this.mystock_listview.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
-            this.mystock_listview.Location = new System.Drawing.Point(21, 517);
-            this.mystock_listview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.mystock_listview.Location = new System.Drawing.Point(18, 414);
             this.mystock_listview.MultiSelect = false;
             this.mystock_listview.Name = "mystock_listview";
-            this.mystock_listview.Size = new System.Drawing.Size(1014, 324);
+            this.mystock_listview.Size = new System.Drawing.Size(888, 260);
             this.mystock_listview.TabIndex = 37;
             this.mystock_listview.UseCompatibleStateImageBehavior = false;
             this.mystock_listview.SelectedIndexChanged += new System.EventHandler(this.mystock_listview_SelectedIndexChanged);
@@ -213,9 +201,9 @@ namespace kwangwoonmoon
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("굴림", 15F);
-            this.label2.Location = new System.Drawing.Point(16, 469);
+            this.label2.Location = new System.Drawing.Point(14, 375);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(178, 25);
+            this.label2.Size = new System.Drawing.Size(143, 20);
             this.label2.TabIndex = 36;
             this.label2.Text = "현재 보유 주식";
             // 
@@ -224,9 +212,9 @@ namespace kwangwoonmoon
             this.mymoney_label.AutoSize = true;
             this.mymoney_label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.mymoney_label.Font = new System.Drawing.Font("굴림", 15F);
-            this.mymoney_label.Location = new System.Drawing.Point(1131, 265);
+            this.mymoney_label.Location = new System.Drawing.Point(990, 212);
             this.mymoney_label.Name = "mymoney_label";
-            this.mymoney_label.Size = new System.Drawing.Size(0, 31);
+            this.mymoney_label.Size = new System.Drawing.Size(0, 20);
             this.mymoney_label.TabIndex = 35;
             this.mymoney_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -234,9 +222,9 @@ namespace kwangwoonmoon
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 15F);
-            this.label1.Location = new System.Drawing.Point(1121, 218);
+            this.label1.Location = new System.Drawing.Point(981, 174);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(178, 25);
+            this.label1.Size = new System.Drawing.Size(143, 20);
             this.label1.TabIndex = 34;
             this.label1.Text = "현재 보유 금액";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -246,10 +234,9 @@ namespace kwangwoonmoon
             this.buy_button.BackColor = System.Drawing.Color.DarkRed;
             this.buy_button.Font = new System.Drawing.Font("굴림", 20F);
             this.buy_button.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.buy_button.Location = new System.Drawing.Point(1061, 761);
-            this.buy_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buy_button.Location = new System.Drawing.Point(928, 609);
             this.buy_button.Name = "buy_button";
-            this.buy_button.Size = new System.Drawing.Size(165, 80);
+            this.buy_button.Size = new System.Drawing.Size(144, 64);
             this.buy_button.TabIndex = 33;
             this.buy_button.Text = "매수";
             this.buy_button.UseVisualStyleBackColor = false;
@@ -257,10 +244,9 @@ namespace kwangwoonmoon
             // stock_listview
             // 
             this.stock_listview.HideSelection = false;
-            this.stock_listview.Location = new System.Drawing.Point(21, 90);
-            this.stock_listview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.stock_listview.Location = new System.Drawing.Point(18, 72);
             this.stock_listview.Name = "stock_listview";
-            this.stock_listview.Size = new System.Drawing.Size(1014, 350);
+            this.stock_listview.Size = new System.Drawing.Size(888, 281);
             this.stock_listview.TabIndex = 28;
             this.stock_listview.UseCompatibleStateImageBehavior = false;
             // 
@@ -268,9 +254,9 @@ namespace kwangwoonmoon
             // 
             this.labe1.AutoSize = true;
             this.labe1.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labe1.Location = new System.Drawing.Point(19, 39);
+            this.labe1.Location = new System.Drawing.Point(17, 31);
             this.labe1.Name = "labe1";
-            this.labe1.Size = new System.Drawing.Size(286, 34);
+            this.labe1.Size = new System.Drawing.Size(228, 27);
             this.labe1.TabIndex = 27;
             this.labe1.Text = "현재 턴 주요 뉴스";
             // 
@@ -279,9 +265,9 @@ namespace kwangwoonmoon
             this.gameturn_label.AutoSize = true;
             this.gameturn_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.gameturn_label.Font = new System.Drawing.Font("굴림", 15F);
-            this.gameturn_label.Location = new System.Drawing.Point(1295, 99);
+            this.gameturn_label.Location = new System.Drawing.Point(1133, 79);
             this.gameturn_label.Name = "gameturn_label";
-            this.gameturn_label.Size = new System.Drawing.Size(38, 25);
+            this.gameturn_label.Size = new System.Drawing.Size(31, 20);
             this.gameturn_label.TabIndex = 56;
             this.gameturn_label.Text = "01";
             // 
@@ -290,9 +276,9 @@ namespace kwangwoonmoon
             this.finish_label.AutoSize = true;
             this.finish_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.finish_label.Font = new System.Drawing.Font("굴림", 15F);
-            this.finish_label.Location = new System.Drawing.Point(1326, 99);
+            this.finish_label.Location = new System.Drawing.Point(1160, 79);
             this.finish_label.Name = "finish_label";
-            this.finish_label.Size = new System.Drawing.Size(56, 25);
+            this.finish_label.Size = new System.Drawing.Size(47, 20);
             this.finish_label.TabIndex = 55;
             this.finish_label.Text = "/ 50";
             // 
@@ -301,9 +287,9 @@ namespace kwangwoonmoon
             this.nowTurn_label.AutoSize = true;
             this.nowTurn_label.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.nowTurn_label.Font = new System.Drawing.Font("굴림", 20F);
-            this.nowTurn_label.Location = new System.Drawing.Point(1294, 48);
+            this.nowTurn_label.Location = new System.Drawing.Point(1132, 38);
             this.nowTurn_label.Name = "nowTurn_label";
-            this.nowTurn_label.Size = new System.Drawing.Size(94, 34);
+            this.nowTurn_label.Size = new System.Drawing.Size(75, 27);
             this.nowTurn_label.TabIndex = 54;
             this.nowTurn_label.Text = "턴 수";
             // 
@@ -312,9 +298,9 @@ namespace kwangwoonmoon
             this.gametime_label.AutoSize = true;
             this.gametime_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.gametime_label.Font = new System.Drawing.Font("굴림", 15F);
-            this.gametime_label.Location = new System.Drawing.Point(1072, 99);
+            this.gametime_label.Location = new System.Drawing.Point(938, 79);
             this.gametime_label.Name = "gametime_label";
-            this.gametime_label.Size = new System.Drawing.Size(194, 25);
+            this.gametime_label.Size = new System.Drawing.Size(160, 20);
             this.gametime_label.TabIndex = 53;
             this.gametime_label.Text = "2532년 10월 5일";
             // 
@@ -323,36 +309,36 @@ namespace kwangwoonmoon
             this.today_label.AutoSize = true;
             this.today_label.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.today_label.Font = new System.Drawing.Font("굴림", 20F);
-            this.today_label.Location = new System.Drawing.Point(1087, 48);
+            this.today_label.Location = new System.Drawing.Point(951, 38);
             this.today_label.Name = "today_label";
-            this.today_label.Size = new System.Drawing.Size(162, 34);
+            this.today_label.Size = new System.Drawing.Size(129, 27);
             this.today_label.TabIndex = 52;
             this.today_label.Text = "현재 날짜";
             // 
             // total_amount_textbox
             // 
             this.total_amount_textbox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.total_amount_textbox.Location = new System.Drawing.Point(1153, 661);
-            this.total_amount_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.total_amount_textbox.Location = new System.Drawing.Point(1009, 529);
             this.total_amount_textbox.Name = "total_amount_textbox";
-            this.total_amount_textbox.Size = new System.Drawing.Size(154, 25);
+            this.total_amount_textbox.Size = new System.Drawing.Size(135, 21);
             this.total_amount_textbox.TabIndex = 57;
             this.total_amount_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.total_amount_textbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.number_textbox_KeyPress);
             // 
             // price_textbox
             // 
             this.price_textbox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.price_textbox.Location = new System.Drawing.Point(1068, 536);
-            this.price_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.price_textbox.Location = new System.Drawing.Point(934, 429);
             this.price_textbox.Name = "price_textbox";
-            this.price_textbox.Size = new System.Drawing.Size(154, 25);
+            this.price_textbox.Size = new System.Drawing.Size(135, 21);
             this.price_textbox.TabIndex = 58;
+            this.price_textbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.number_textbox_KeyPress);
             // 
             // KWM
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1413, 858);
+            this.ClientSize = new System.Drawing.Size(1236, 686);
             this.Controls.Add(this.price_textbox);
             this.Controls.Add(this.total_amount_textbox);
             this.Controls.Add(this.gameturn_label);
@@ -379,8 +365,7 @@ namespace kwangwoonmoon
             this.Controls.Add(this.buy_button);
             this.Controls.Add(this.stock_listview);
             this.Controls.Add(this.labe1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MinimumSize = new System.Drawing.Size(1428, 895);
+            this.MinimumSize = new System.Drawing.Size(1252, 724);
             this.Name = "KWM";
             this.Text = "Kwang Woon Moon";
             this.Load += new System.EventHandler(this.KWM_Load);

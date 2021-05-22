@@ -18,14 +18,15 @@ namespace kwangwoonmoon
     public class Stock
     {
         // 해당 Stock의 데이터를 담고있는 ListViewItem
-        public System.Windows.Forms.ListViewItem ReferenceItem;
+        public System.Windows.Forms.ListViewItem ReferenceStock = null;
+        public System.Windows.Forms.ListViewItem ReferenceMyStock = null;
         //초기화
 
         // 종목 이름
         public string StockName { get; private set; }
 
         // 주가
-        public float StockPrice { get; private set; }
+        public ulong StockPrice { get; private set; }
 
         // 지난 턴 주가
         float LastStockPrice { get; set; }
@@ -34,7 +35,7 @@ namespace kwangwoonmoon
         public int StockQuantity { get; private set; }
 
         // 구매 가격
-        public float StockBuyPrice { get; private set; }
+        public ulong StockBuyPrice { get; private set; }
 
         // 등락률
         public float StockRatio { get; private set; }
@@ -43,6 +44,13 @@ namespace kwangwoonmoon
         public float StockEarningRatio { get; private set; }
 
         float NextStockRatio { get; set; }
+
+        public Stock(string name, ulong price)
+        {
+            StockName = name;
+            StockPrice = price;
+            StockQuantity = 0;
+        }
 
 
 
@@ -55,12 +63,18 @@ namespace kwangwoonmoon
         public void UpdateStockRatio()
         {
             LastStockPrice = StockPrice;
-            StockPrice *= NextStockRatio;
+            StockPrice = (ulong)(StockPrice * NextStockRatio);
             StockRatio = NextStockRatio;
             NextStockRatio = 0;
 
             // ListViewItem 데이터 업데이트
 
+        }
+
+
+        public void DecreaseStockQuantity(int quantity)
+        {
+            StockQuantity -= quantity;
         }
     }
 }
