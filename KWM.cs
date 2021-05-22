@@ -13,6 +13,8 @@ namespace kwangwoonmoon
     public partial class KWM : Form
     {
         public int Turn { get; private set; } = 0;
+        // 게임이 종료되는 마지막 턴
+        public const int LASTTURN = 50;
 
         List<Stock> stocks = new List<Stock>();
 
@@ -34,6 +36,8 @@ namespace kwangwoonmoon
 
         InfoShop infoShop = null;
 
+        public ulong CurrentMoney = 123456789;
+
 
         public KWM()
         {
@@ -42,6 +46,11 @@ namespace kwangwoonmoon
         private void KWM_Load(object sender, EventArgs e)
         {
             NextTurn();
+
+            // 라벨 Text 값 초기화
+            this.finish_label.Text = "/ " + LASTTURN.ToString();
+            this.mymoney_label.Text = String.Format("{0:#,###}", CurrentMoney);
+            this.total_amount_textbox.Text = "0";
         }
 
 
@@ -52,6 +61,15 @@ namespace kwangwoonmoon
             UpdateEvent();
 
             ++Turn;
+
+            // 업데이트 된 Turn 을 label 에 적용
+            if (Turn < 10) gameturn_label.Text = "0" + Turn.ToString();
+            else if (Turn > 50) gameturn_label.Text = LASTTURN.ToString();
+            else gameturn_label.Text = Turn.ToString();
+
+            // Turn 이 변화함에 따라 Child Form 에도 영향
+            if (infoShop == null) return;
+            else infoShop.SetBuyCount();
         }
 
 
@@ -127,6 +145,44 @@ namespace kwangwoonmoon
             }
         }
 
+
+        // Shop
+
+        // InfoShop 폼의 NewsLabel에 이벤트 설정
+        void SetToInfoShop()
+        {
+            if (infoShop == null) return;
+
+            infoShop.SetEventNews(CurrentEvents[CurrentEvents.Count - 1]);
+            infoShop.SetMyMoney(CurrentMoney);
+            infoShop.SetBuyCount();
+        }
+
+        // InfoShop 에서 정보 구매시 보유 금액 변경
+        public void SetMoney(object obj, EventArgs e)
+        {
+            InfoShop shop = obj as InfoShop;
+            this.mymoney_label.Text = string.Format("{0:#,###}", shop.money);
+        }
+
+        private void info_shop_button_Click(object sender, EventArgs e)
+        {
+            if (infoShop == null)
+            {
+                infoShop = new InfoShop();
+                infoShop.Owner = this;
+                infoShop.Changed += new EventHandler(SetMoney);
+            }
+
+            SetToInfoShop();
+
+            infoShop.Show();
+            infoShop.Focus();
+        }
+
+
+        // Button Events
+
         private void news_button_Click(object sender, EventArgs e)
         {
             if (eventNInfo == null)
@@ -141,16 +197,17 @@ namespace kwangwoonmoon
             eventNInfo.Focus();
         }
 
-        private void info_shop_button_Click(object sender, EventArgs e)
+        private void plus_button_Click(object sender, EventArgs e)
         {
-            if (infoShop == null)
-            {
-                infoShop = new InfoShop();
-                infoShop.Owner = this;
-            }
+            total_amount_textbox.Text = (Convert.ToInt32(total_amount_textbox.Text) + 1).ToString();
+            // 수량에 증가에 따른 총액 업데이트 필요
+        }
 
-            infoShop.Show();
-            infoShop.Focus();
+        private void minus_button_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(total_amount_textbox.Text) <= 0) total_amount_textbox.Text = "0";
+            else total_amount_textbox.Text = (Convert.ToInt32(total_amount_textbox.Text) - 1).ToString();
+            // 수량에 감소에 따른 총액 업데이트 필요
         }
     }
 }
