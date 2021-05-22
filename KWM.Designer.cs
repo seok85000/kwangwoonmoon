@@ -29,289 +29,358 @@ namespace kwangwoonmoon
         /// </summary>
         private void InitializeComponent()
         {
-            this.labe1 = new System.Windows.Forms.Label();
-            this.stock_listview = new System.Windows.Forms.ListView();
-            this.today_label = new System.Windows.Forms.Label();
-            this.gametime_label = new System.Windows.Forms.Label();
-            this.nowTurn_label = new System.Windows.Forms.Label();
-            this.finish_label = new System.Windows.Forms.Label();
-            this.buy_button = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.mystock_listview = new System.Windows.Forms.ListView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.total_amount_textbox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.total_price_textbox = new System.Windows.Forms.TextBox();
-            this.sell_button = new System.Windows.Forms.Button();
-            this.news_button = new System.Windows.Forms.Button();
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            "삼성전자",
+            "",
+            "20",
+            "80100",
+            "90000"}, -1);
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lb_Selected = new System.Windows.Forms.Label();
+            this.lb_SelectedStock = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.info_shop_button = new System.Windows.Forms.Button();
-            this.plus_button = new System.Windows.Forms.Button();
-            this.minus_button = new System.Windows.Forms.Button();
-            this.gameturn_label = new System.Windows.Forms.Label();
+            this.news_button = new System.Windows.Forms.Button();
+            this.sell_button = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.mystock_listview = new System.Windows.Forms.ListView();
+            this.label2 = new System.Windows.Forms.Label();
             this.mymoney_label = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buy_button = new System.Windows.Forms.Button();
+            this.stock_listview = new System.Windows.Forms.ListView();
+            this.labe1 = new System.Windows.Forms.Label();
+            this.gameturn_label = new System.Windows.Forms.Label();
+            this.finish_label = new System.Windows.Forms.Label();
+            this.nowTurn_label = new System.Windows.Forms.Label();
+            this.gametime_label = new System.Windows.Forms.Label();
+            this.today_label = new System.Windows.Forms.Label();
+            this.total_amount_textbox = new System.Windows.Forms.TextBox();
+            this.price_textbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // labe1
+            // label8
             // 
-            this.labe1.AutoSize = true;
-            this.labe1.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labe1.Location = new System.Drawing.Point(12, 14);
-            this.labe1.Name = "labe1";
-            this.labe1.Size = new System.Drawing.Size(66, 27);
-            this.labe1.TabIndex = 0;
-            this.labe1.Text = "뉴스";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("굴림", 15F);
+            this.label8.Location = new System.Drawing.Point(1063, 592);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(225, 25);
+            this.label8.TabIndex = 51;
+            this.label8.Text = "거래하시겠습니까?";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // stock_listview
+            // label10
             // 
-            this.stock_listview.HideSelection = false;
-            this.stock_listview.Location = new System.Drawing.Point(12, 55);
-            this.stock_listview.Name = "stock_listview";
-            this.stock_listview.Size = new System.Drawing.Size(888, 344);
-            this.stock_listview.TabIndex = 1;
-            this.stock_listview.UseCompatibleStateImageBehavior = false;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("굴림", 15F);
+            this.label10.Location = new System.Drawing.Point(1260, 536);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(128, 25);
+            this.label10.TabIndex = 50;
+            this.label10.Text = "원 입니다.";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // today_label
+            // label9
             // 
-            this.today_label.AutoSize = true;
-            this.today_label.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.today_label.Font = new System.Drawing.Font("굴림", 20F);
-            this.today_label.Location = new System.Drawing.Point(937, 55);
-            this.today_label.Name = "today_label";
-            this.today_label.Size = new System.Drawing.Size(129, 27);
-            this.today_label.TabIndex = 2;
-            this.today_label.Text = "현재 날짜";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("굴림", 15F);
+            this.label9.Location = new System.Drawing.Point(1296, 441);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 25);
+            this.label9.TabIndex = 49;
+            this.label9.Text = "이고,";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // gametime_label
+            // lb_Selected
             // 
-            this.gametime_label.AutoSize = true;
-            this.gametime_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.gametime_label.Font = new System.Drawing.Font("굴림", 15F);
-            this.gametime_label.Location = new System.Drawing.Point(924, 96);
-            this.gametime_label.Name = "gametime_label";
-            this.gametime_label.Size = new System.Drawing.Size(160, 20);
-            this.gametime_label.TabIndex = 3;
-            this.gametime_label.Text = "2532년 10월 5일";
+            this.lb_Selected.BackColor = System.Drawing.Color.White;
+            this.lb_Selected.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Bold);
+            this.lb_Selected.Location = new System.Drawing.Point(1063, 433);
+            this.lb_Selected.Name = "lb_Selected";
+            this.lb_Selected.Size = new System.Drawing.Size(244, 41);
+            this.lb_Selected.TabIndex = 48;
+            this.lb_Selected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // nowTurn_label
+            // lb_SelectedStock
             // 
-            this.nowTurn_label.AutoSize = true;
-            this.nowTurn_label.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.nowTurn_label.Font = new System.Drawing.Font("굴림", 20F);
-            this.nowTurn_label.Location = new System.Drawing.Point(1118, 55);
-            this.nowTurn_label.Name = "nowTurn_label";
-            this.nowTurn_label.Size = new System.Drawing.Size(75, 27);
-            this.nowTurn_label.TabIndex = 4;
-            this.nowTurn_label.Text = "턴 수";
+            this.lb_SelectedStock.AutoSize = true;
+            this.lb_SelectedStock.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lb_SelectedStock.Font = new System.Drawing.Font("굴림", 15F);
+            this.lb_SelectedStock.Location = new System.Drawing.Point(1082, 433);
+            this.lb_SelectedStock.Name = "lb_SelectedStock";
+            this.lb_SelectedStock.Size = new System.Drawing.Size(0, 25);
+            this.lb_SelectedStock.TabIndex = 47;
+            this.lb_SelectedStock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // finish_label
+            // label7
             // 
-            this.finish_label.AutoSize = true;
-            this.finish_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.finish_label.Font = new System.Drawing.Font("굴림", 15F);
-            this.finish_label.Location = new System.Drawing.Point(1146, 96);
-            this.finish_label.Name = "finish_label";
-            this.finish_label.Size = new System.Drawing.Size(47, 20);
-            this.finish_label.TabIndex = 5;
-            this.finish_label.Text = "/ 50";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("굴림", 15F);
+            this.label7.Location = new System.Drawing.Point(1063, 491);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(303, 25);
+            this.label7.TabIndex = 46;
+            this.label7.Text = "선택하신 종목의 시장가는";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // buy_button
+            // label5
             // 
-            this.buy_button.BackColor = System.Drawing.Color.DarkRed;
-            this.buy_button.Font = new System.Drawing.Font("굴림", 20F);
-            this.buy_button.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.buy_button.Location = new System.Drawing.Point(922, 605);
-            this.buy_button.Name = "buy_button";
-            this.buy_button.Size = new System.Drawing.Size(144, 64);
-            this.buy_button.TabIndex = 6;
-            this.buy_button.Text = "매수";
-            this.buy_button.UseVisualStyleBackColor = false;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("굴림", 15F);
+            this.label5.Location = new System.Drawing.Point(1313, 265);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 25);
+            this.label5.TabIndex = 45;
+            this.label5.Text = "원";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // info_shop_button
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("굴림", 15F);
-            this.label1.Location = new System.Drawing.Point(13, 437);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 20);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "현재 보유 금액";
+            this.info_shop_button.Location = new System.Drawing.Point(834, 18);
+            this.info_shop_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.info_shop_button.Name = "info_shop_button";
+            this.info_shop_button.Size = new System.Drawing.Size(201, 64);
+            this.info_shop_button.TabIndex = 44;
+            this.info_shop_button.Text = "정보 상점";
+            this.info_shop_button.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // news_button
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("굴림", 15F);
-            this.label2.Location = new System.Drawing.Point(343, 469);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 20);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "현재 보유 주식";
-            // 
-            // mystock_listview
-            // 
-            this.mystock_listview.HideSelection = false;
-            this.mystock_listview.Location = new System.Drawing.Point(12, 496);
-            this.mystock_listview.Name = "mystock_listview";
-            this.mystock_listview.Size = new System.Drawing.Size(888, 173);
-            this.mystock_listview.TabIndex = 10;
-            this.mystock_listview.UseCompatibleStateImageBehavior = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("굴림", 15F);
-            this.label3.Location = new System.Drawing.Point(917, 497);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 20);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "수량";
-            // 
-            // total_amount_textbox
-            // 
-            this.total_amount_textbox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.total_amount_textbox.Location = new System.Drawing.Point(983, 496);
-            this.total_amount_textbox.Name = "total_amount_textbox";
-            this.total_amount_textbox.Size = new System.Drawing.Size(135, 21);
-            this.total_amount_textbox.TabIndex = 12;
-            this.total_amount_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.total_amount_textbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.number_textbox_KeyPress);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("굴림", 15F);
-            this.label4.Location = new System.Drawing.Point(917, 539);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 20);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "총액";
-            // 
-            // total_price_textbox
-            // 
-            this.total_price_textbox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.total_price_textbox.Location = new System.Drawing.Point(983, 538);
-            this.total_price_textbox.Name = "total_price_textbox";
-            this.total_price_textbox.Size = new System.Drawing.Size(135, 21);
-            this.total_price_textbox.TabIndex = 14;
-            this.total_price_textbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.number_textbox_KeyPress);
+            this.news_button.Location = new System.Drawing.Point(617, 18);
+            this.news_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.news_button.Name = "news_button";
+            this.news_button.Size = new System.Drawing.Size(201, 64);
+            this.news_button.TabIndex = 43;
+            this.news_button.Text = "뉴스 / 정보";
+            this.news_button.UseVisualStyleBackColor = true;
             // 
             // sell_button
             // 
             this.sell_button.BackColor = System.Drawing.Color.DarkBlue;
             this.sell_button.Font = new System.Drawing.Font("굴림", 20F);
             this.sell_button.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.sell_button.Location = new System.Drawing.Point(1072, 605);
+            this.sell_button.Location = new System.Drawing.Point(1232, 761);
+            this.sell_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.sell_button.Name = "sell_button";
-            this.sell_button.Size = new System.Drawing.Size(144, 64);
-            this.sell_button.TabIndex = 15;
+            this.sell_button.Size = new System.Drawing.Size(165, 80);
+            this.sell_button.TabIndex = 42;
             this.sell_button.Text = "매도";
             this.sell_button.UseVisualStyleBackColor = false;
+            this.sell_button.Click += new System.EventHandler(this.sell_button_Click);
             // 
-            // news_button
+            // label4
             // 
-            this.news_button.Location = new System.Drawing.Point(983, 200);
-            this.news_button.Name = "news_button";
-            this.news_button.Size = new System.Drawing.Size(176, 51);
-            this.news_button.TabIndex = 16;
-            this.news_button.Text = "뉴스 / 정보";
-            this.news_button.UseVisualStyleBackColor = true;
-            this.news_button.Click += new System.EventHandler(this.news_button_Click);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("굴림", 15F);
+            this.label4.Location = new System.Drawing.Point(1063, 398);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(195, 25);
+            this.label4.TabIndex = 40;
+            this.label4.Text = "선택하신 종목은";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // info_shop_button
+            // label3
             // 
-            this.info_shop_button.Location = new System.Drawing.Point(983, 312);
-            this.info_shop_button.Name = "info_shop_button";
-            this.info_shop_button.Size = new System.Drawing.Size(176, 51);
-            this.info_shop_button.TabIndex = 17;
-            this.info_shop_button.Text = "정보 상점";
-            this.info_shop_button.UseVisualStyleBackColor = true;
-            this.info_shop_button.Click += new System.EventHandler(this.info_shop_button_Click);
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("굴림", 15F);
+            this.label3.Location = new System.Drawing.Point(1063, 661);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(62, 25);
+            this.label3.TabIndex = 38;
+            this.label3.Text = "수량";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // plus_button
+            // mystock_listview
             // 
-            this.plus_button.Location = new System.Drawing.Point(1141, 494);
-            this.plus_button.Name = "plus_button";
-            this.plus_button.Size = new System.Drawing.Size(75, 23);
-            this.plus_button.TabIndex = 18;
-            this.plus_button.Text = "+1";
-            this.plus_button.UseVisualStyleBackColor = true;
-            this.plus_button.Click += new System.EventHandler(this.plus_button_Click);
+            this.mystock_listview.HideSelection = false;
+            this.mystock_listview.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem2});
+            this.mystock_listview.Location = new System.Drawing.Point(21, 517);
+            this.mystock_listview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.mystock_listview.MultiSelect = false;
+            this.mystock_listview.Name = "mystock_listview";
+            this.mystock_listview.Size = new System.Drawing.Size(1014, 324);
+            this.mystock_listview.TabIndex = 37;
+            this.mystock_listview.UseCompatibleStateImageBehavior = false;
+            this.mystock_listview.SelectedIndexChanged += new System.EventHandler(this.mystock_listview_SelectedIndexChanged);
             // 
-            // minus_button
+            // label2
             // 
-            this.minus_button.Location = new System.Drawing.Point(1141, 538);
-            this.minus_button.Name = "minus_button";
-            this.minus_button.Size = new System.Drawing.Size(75, 23);
-            this.minus_button.TabIndex = 19;
-            this.minus_button.Text = "-1";
-            this.minus_button.UseVisualStyleBackColor = true;
-            this.minus_button.Click += new System.EventHandler(this.minus_button_Click);
-            // 
-            // gameturn_label
-            // 
-            this.gameturn_label.AutoSize = true;
-            this.gameturn_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.gameturn_label.Font = new System.Drawing.Font("굴림", 15F);
-            this.gameturn_label.Location = new System.Drawing.Point(1119, 96);
-            this.gameturn_label.Name = "gameturn_label";
-            this.gameturn_label.Size = new System.Drawing.Size(31, 20);
-            this.gameturn_label.TabIndex = 20;
-            this.gameturn_label.Text = "01";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("굴림", 15F);
+            this.label2.Location = new System.Drawing.Point(16, 469);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(178, 25);
+            this.label2.TabIndex = 36;
+            this.label2.Text = "현재 보유 주식";
             // 
             // mymoney_label
             // 
             this.mymoney_label.AutoSize = true;
             this.mymoney_label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.mymoney_label.Font = new System.Drawing.Font("굴림", 15F);
-            this.mymoney_label.Location = new System.Drawing.Point(219, 437);
+            this.mymoney_label.Location = new System.Drawing.Point(1131, 265);
             this.mymoney_label.Name = "mymoney_label";
-            this.mymoney_label.Size = new System.Drawing.Size(122, 20);
-            this.mymoney_label.TabIndex = 8;
-            this.mymoney_label.Text = "123,456,789";
+            this.mymoney_label.Size = new System.Drawing.Size(0, 31);
+            this.mymoney_label.TabIndex = 35;
             this.mymoney_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label6
+            // label1
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label6.Font = new System.Drawing.Font("굴림", 15F);
-            this.label6.Location = new System.Drawing.Point(177, 437);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(720, 20);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "\\                                                                                " +
-    "                원";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("굴림", 15F);
+            this.label1.Location = new System.Drawing.Point(1121, 218);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(178, 25);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "현재 보유 금액";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // buy_button
+            // 
+            this.buy_button.BackColor = System.Drawing.Color.DarkRed;
+            this.buy_button.Font = new System.Drawing.Font("굴림", 20F);
+            this.buy_button.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.buy_button.Location = new System.Drawing.Point(1061, 761);
+            this.buy_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buy_button.Name = "buy_button";
+            this.buy_button.Size = new System.Drawing.Size(165, 80);
+            this.buy_button.TabIndex = 33;
+            this.buy_button.Text = "매수";
+            this.buy_button.UseVisualStyleBackColor = false;
+            // 
+            // stock_listview
+            // 
+            this.stock_listview.HideSelection = false;
+            this.stock_listview.Location = new System.Drawing.Point(21, 90);
+            this.stock_listview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.stock_listview.Name = "stock_listview";
+            this.stock_listview.Size = new System.Drawing.Size(1014, 350);
+            this.stock_listview.TabIndex = 28;
+            this.stock_listview.UseCompatibleStateImageBehavior = false;
+            // 
+            // labe1
+            // 
+            this.labe1.AutoSize = true;
+            this.labe1.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.labe1.Location = new System.Drawing.Point(19, 39);
+            this.labe1.Name = "labe1";
+            this.labe1.Size = new System.Drawing.Size(286, 34);
+            this.labe1.TabIndex = 27;
+            this.labe1.Text = "현재 턴 주요 뉴스";
+            // 
+            // gameturn_label
+            // 
+            this.gameturn_label.AutoSize = true;
+            this.gameturn_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.gameturn_label.Font = new System.Drawing.Font("굴림", 15F);
+            this.gameturn_label.Location = new System.Drawing.Point(1295, 99);
+            this.gameturn_label.Name = "gameturn_label";
+            this.gameturn_label.Size = new System.Drawing.Size(38, 25);
+            this.gameturn_label.TabIndex = 56;
+            this.gameturn_label.Text = "01";
+            // 
+            // finish_label
+            // 
+            this.finish_label.AutoSize = true;
+            this.finish_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.finish_label.Font = new System.Drawing.Font("굴림", 15F);
+            this.finish_label.Location = new System.Drawing.Point(1326, 99);
+            this.finish_label.Name = "finish_label";
+            this.finish_label.Size = new System.Drawing.Size(56, 25);
+            this.finish_label.TabIndex = 55;
+            this.finish_label.Text = "/ 50";
+            // 
+            // nowTurn_label
+            // 
+            this.nowTurn_label.AutoSize = true;
+            this.nowTurn_label.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.nowTurn_label.Font = new System.Drawing.Font("굴림", 20F);
+            this.nowTurn_label.Location = new System.Drawing.Point(1294, 48);
+            this.nowTurn_label.Name = "nowTurn_label";
+            this.nowTurn_label.Size = new System.Drawing.Size(94, 34);
+            this.nowTurn_label.TabIndex = 54;
+            this.nowTurn_label.Text = "턴 수";
+            // 
+            // gametime_label
+            // 
+            this.gametime_label.AutoSize = true;
+            this.gametime_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.gametime_label.Font = new System.Drawing.Font("굴림", 15F);
+            this.gametime_label.Location = new System.Drawing.Point(1072, 99);
+            this.gametime_label.Name = "gametime_label";
+            this.gametime_label.Size = new System.Drawing.Size(194, 25);
+            this.gametime_label.TabIndex = 53;
+            this.gametime_label.Text = "2532년 10월 5일";
+            // 
+            // today_label
+            // 
+            this.today_label.AutoSize = true;
+            this.today_label.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.today_label.Font = new System.Drawing.Font("굴림", 20F);
+            this.today_label.Location = new System.Drawing.Point(1087, 48);
+            this.today_label.Name = "today_label";
+            this.today_label.Size = new System.Drawing.Size(162, 34);
+            this.today_label.TabIndex = 52;
+            this.today_label.Text = "현재 날짜";
+            // 
+            // total_amount_textbox
+            // 
+            this.total_amount_textbox.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.total_amount_textbox.Location = new System.Drawing.Point(1153, 661);
+            this.total_amount_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.total_amount_textbox.Name = "total_amount_textbox";
+            this.total_amount_textbox.Size = new System.Drawing.Size(154, 25);
+            this.total_amount_textbox.TabIndex = 57;
+            this.total_amount_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // price_textbox
+            // 
+            this.price_textbox.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.price_textbox.Location = new System.Drawing.Point(1068, 536);
+            this.price_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.price_textbox.Name = "price_textbox";
+            this.price_textbox.Size = new System.Drawing.Size(154, 25);
+            this.price_textbox.TabIndex = 58;
             // 
             // KWM
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1236, 686);
-            this.Controls.Add(this.gameturn_label);
-            this.Controls.Add(this.minus_button);
-            this.Controls.Add(this.plus_button);
-            this.Controls.Add(this.info_shop_button);
-            this.Controls.Add(this.news_button);
-            this.Controls.Add(this.sell_button);
-            this.Controls.Add(this.total_price_textbox);
-            this.Controls.Add(this.label4);
+            this.ClientSize = new System.Drawing.Size(1413, 858);
+            this.Controls.Add(this.price_textbox);
             this.Controls.Add(this.total_amount_textbox);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.mystock_listview);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.mymoney_label);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.buy_button);
+            this.Controls.Add(this.gameturn_label);
             this.Controls.Add(this.finish_label);
             this.Controls.Add(this.nowTurn_label);
             this.Controls.Add(this.gametime_label);
             this.Controls.Add(this.today_label);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lb_Selected);
+            this.Controls.Add(this.lb_SelectedStock);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.info_shop_button);
+            this.Controls.Add(this.news_button);
+            this.Controls.Add(this.sell_button);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.mystock_listview);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.mymoney_label);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.buy_button);
             this.Controls.Add(this.stock_listview);
             this.Controls.Add(this.labe1);
-            this.MinimumSize = new System.Drawing.Size(1252, 725);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MinimumSize = new System.Drawing.Size(1428, 895);
             this.Name = "KWM";
             this.Text = "Kwang Woon Moon";
             this.Load += new System.EventHandler(this.KWM_Load);
@@ -322,28 +391,32 @@ namespace kwangwoonmoon
 
         #endregion
 
-        private System.Windows.Forms.Label labe1;
-        private System.Windows.Forms.ListView stock_listview;
-        private System.Windows.Forms.Label today_label;
-        private System.Windows.Forms.Label gametime_label;
-        private System.Windows.Forms.Label nowTurn_label;
-        private System.Windows.Forms.Label finish_label;
-        private System.Windows.Forms.Button buy_button;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListView mystock_listview;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox total_amount_textbox;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox total_price_textbox;
-        private System.Windows.Forms.Button sell_button;
-        private System.Windows.Forms.Button news_button;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lb_Selected;
+        private System.Windows.Forms.Label lb_SelectedStock;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button info_shop_button;
-        private System.Windows.Forms.Button plus_button;
-        private System.Windows.Forms.Button minus_button;
-        private System.Windows.Forms.Label gameturn_label;
+        private System.Windows.Forms.Button news_button;
+        private System.Windows.Forms.Button sell_button;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListView mystock_listview;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label mymoney_label;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buy_button;
+        private System.Windows.Forms.ListView stock_listview;
+        private System.Windows.Forms.Label labe1;
+        private System.Windows.Forms.Label gameturn_label;
+        private System.Windows.Forms.Label finish_label;
+        private System.Windows.Forms.Label nowTurn_label;
+        private System.Windows.Forms.Label gametime_label;
+        private System.Windows.Forms.Label today_label;
+        private System.Windows.Forms.TextBox total_amount_textbox;
+        private System.Windows.Forms.TextBox price_textbox;
     }
 }
 
