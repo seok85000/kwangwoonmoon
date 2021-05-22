@@ -103,5 +103,14 @@ namespace kwangwoonmoon
             }
             else MessageBox.Show("구매 횟수를 모두 사용했습니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void InfoShop_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Hide();
+                e.Cancel = true;
+            }
+        }
     }
 }

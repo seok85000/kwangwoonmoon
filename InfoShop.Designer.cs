@@ -180,6 +180,7 @@ namespace kwangwoonmoon
             this.Controls.Add(this.label1);
             this.Name = "InfoShop";
             this.Text = "정보 상점";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InfoShop_FormClosing);
             this.Load += new System.EventHandler(this.InfoShop_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
