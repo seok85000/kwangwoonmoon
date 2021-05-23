@@ -83,7 +83,7 @@ namespace kwangwoonmoon
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("굴림", 15F);
-            this.label9.Location = new System.Drawing.Point(1134, 353);
+            this.label9.Location = new System.Drawing.Point(1149, 352);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(56, 20);
             this.label9.TabIndex = 49;

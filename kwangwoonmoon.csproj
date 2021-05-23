@@ -68,6 +68,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stock.cs" />
+    <Compile Include="TransactionInfo.cs" />
     <EmbeddedResource Include="EventNInfo.resx">
       <DependentUpon>EventNInfo.cs</DependentUpon>
     </EmbeddedResource>
