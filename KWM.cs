@@ -219,9 +219,7 @@ namespace kwangwoonmoon
                 price.Name = StockColumType.StockPrice.ToString();
                 price.Text = s.StockPrice.ToString();
 
-                var price = item.SubItems.Add(new ListViewItem.ListViewSubItem());
-                price.Name = StockColumType.StockPrice.ToString();
-                price.Text = s.StockPrice.ToString();
+
 
                 var ratio = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 ratio.Name = StockColumType.StockRatio.ToString();
