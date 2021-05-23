@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
 
 namespace kwangwoonmoon
 {
@@ -22,6 +21,8 @@ namespace kwangwoonmoon
         public const int LASTTURN = 50;
 
         List<Stock> stocks = new List<Stock>();
+        List<TransactionInfo> transactionList = new List<TransactionInfo>();
+
 
         public static int DefaultEventSize = 3;
         public static int DefaultRandomEventSize = 2;
@@ -55,24 +56,51 @@ namespace kwangwoonmoon
 
             MoneyChanged += UpdateMoneyText;
         }
-        void my_lisviewUpdate()
+        void InitStockListView()
+        {
+            stock_listview.View = View.Details;
+
+            stock_listview.Columns.Add(StockColumType.StockName.ToString(), "종목명");
+            stock_listview.Columns.Add(StockColumType.StockPrice.ToString(), "현재가");
+            stock_listview.Columns.Add(StockColumType.StockRatio.ToString(), "등락률");
+
+            stock_listview.Columns.Add("");
+            stock_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            stock_listview.Columns.RemoveAt(stock_listview.Columns.Count - 1);
+
+
+            // For Test
+            Stock stock = new Stock("삼성전자", 10000);
+            Stock stock2 = new Stock("SK하이닉스", 122500);
+            stocks.Add(stock);
+            stocks.Add(stock2);
+            SetStockListView();
+            transactionList.Add(new TransactionInfo(stock, 9000, 15));
+            SetTransactionListView();
+        }
+
+        void InitTransactionListView()
         {
             mystock_listview.View = View.Details;
 
-            mystock_listview.Columns.Add(StockColumType.StockName.ToString(), "종목명");
-            /*mystock_listview.Columns[mystock_listview.Columns.Count - 1].Width = -1;*/
-            mystock_listview.Columns.Add(StockColumType.StockRatio.ToString(), "수익률");
-            mystock_listview.Columns.Add(StockColumType.StockQuantity.ToString(), "보유 수량");
+            mystock_listview.Columns.Add(TransactionListColumnType.StockName.ToString(), "종목명");
+            mystock_listview.Columns.Add(TransactionListColumnType.AverageBuyingPrice.ToString(), "매수평균가");
+            mystock_listview.Columns.Add(TransactionListColumnType.StockQuantity.ToString(), "보유 수량");
+            mystock_listview.Columns.Add(TransactionListColumnType.TotalPrice.ToString(), "평가금액");
+            mystock_listview.Columns.Add(TransactionListColumnType.ProfitRatio.ToString(), "수익률");
 
-            mystock_listview.Columns.Add(StockColumType.StockPrice.ToString(), "현재가");
-
-            mystock_listview.Columns.Add(StockColumType.StockBuyPrice.ToString(), "매입가");
+            mystock_listview.Columns.Add("");
             mystock_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            mystock_listview.Columns.RemoveAt(mystock_listview.Columns.Count - 1);
         }
+
+      
+
         private void KWM_Load(object sender, EventArgs e)
         {
             NextTurn();
-            my_lisviewUpdate();
+            InitStockListView();
+            InitTransactionListView();
 
             // 라벨 Text 값 초기화
             this.finish_label.Text = "/ " + LASTTURN.ToString();
@@ -95,8 +123,7 @@ namespace kwangwoonmoon
             else gameturn_label.Text = Turn.ToString();
 
             // Turn 이 변화함에 따라 Child Form 에도 영향
-            if (infoShop == null) return;
-            else infoShop.SetBuyCount();
+            infoShop?.SetBuyCount();
         }
 
 
@@ -169,7 +196,7 @@ namespace kwangwoonmoon
             foreach (Stock stock in stocks)
             {
                 stock.UpdateStockRatio();
-          
+
 
             }
 
@@ -178,42 +205,62 @@ namespace kwangwoonmoon
 
 
 
-        //mystock_listview 리스트 뷰 컬럼 정의
-        void SetEventListView(List<Stock> stocks)
+        //stock_listview 리스트 뷰 컬럼 정의
+        void SetStockListView()
         {
-            if (stocks == null) return;
-
-            mystock_listview.Items.Clear();
+            stock_listview.Items.Clear();
             foreach (Stock s in stocks)
             {
-                ListViewItem item = mystock_listview.Items.Add(new ListViewItem());
+                ListViewItem item = stock_listview.Items.Add(new ListViewItem());
                 item.Name = StockColumType.StockName.ToString();
                 item.Text = s.StockName;
-
-                var ratio = item.SubItems.Add(new ListViewItem.ListViewSubItem());
-                ratio.Name = StockColumType.StockRatio.ToString();
-                ratio.Text = s.StockRatio.ToString();
-
-
-                var quantity = item.SubItems.Add(new ListViewItem.ListViewSubItem());
-                quantity.Name = StockColumType.StockQuantity.ToString();
-                quantity.Text = s.StockQuantity.ToString();
 
                 var price = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 price.Name = StockColumType.StockPrice.ToString();
                 price.Text = s.StockPrice.ToString();
 
-                var nowprice = item.SubItems.Add(new ListViewItem.ListViewSubItem());
-                nowprice.Name = StockColumType.StockBuyPrice.ToString();
-                nowprice.Text = s.StockBuyPrice.ToString();
-            }
+                var ratio = item.SubItems.Add(new ListViewItem.ListViewSubItem());
+                ratio.Name = StockColumType.StockRatio.ToString();
+                ratio.Text = s.StockRatio.ToString();
 
-            //eventListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                item.Tag = s;
+                s.ReferenceStock = item;
+            }
+        }
+
+        void SetTransactionListView()
+        {
+            mystock_listview.Items.Clear();
+            foreach (TransactionInfo info in transactionList)
+            {
+                ListViewItem item = mystock_listview.Items.Add(new ListViewItem());
+                item.Name = TransactionListColumnType.StockName.ToString();
+                item.Text = info.StockName;
+
+                var avgPrice = item.SubItems.Add(new ListViewItem.ListViewSubItem());
+                avgPrice.Name = TransactionListColumnType.AverageBuyingPrice.ToString();
+                avgPrice.Text = info.AverageBuyingPrice.ToString();
+
+                var quantity = item.SubItems.Add(new ListViewItem.ListViewSubItem());
+                quantity.Name = TransactionListColumnType.StockQuantity.ToString();
+                quantity.Text = info.StockQuantity.ToString();
+
+                var totalPrice = item.SubItems.Add(new ListViewItem.ListViewSubItem());
+                totalPrice.Name = TransactionListColumnType.TotalPrice.ToString();
+                totalPrice.Text = info.TotalPrice.ToString();
+
+                var ratio = item.SubItems.Add(new ListViewItem.ListViewSubItem());
+                ratio.Name = TransactionListColumnType.ProfitRatio.ToString();
+                ratio.Text = info.ProfitRatio.ToString();
+
+                item.Tag = info;
+            }
         }
 
         //inputbox 비우기
         private void ClearInputControl()
         {
+            lb_Selected.Text = string.Empty;
             total_amount_textbox.Text = string.Empty;
             price_textbox.Text = string.Empty;
         }
@@ -229,9 +276,10 @@ namespace kwangwoonmoon
                 return;
             }
             ListViewItem lvi = mystock_listview.SelectedItems[0];
-            lb_Selected.Text = lvi.SubItems[0].Text;
-            price_textbox.Text = string.Format("{0:#,###}", lvi.SubItems[3].Text);
-            total_amount_textbox.Text = lvi.SubItems[2].Text;
+            TransactionInfo info = (TransactionInfo)lvi.Tag;
+            lb_Selected.Text = info.StockName;
+            price_textbox.Text = string.Format("{0:#,###}", info.CurrentStockPrice);
+            total_amount_textbox.Text = info.StockQuantity.ToString();
         }
 
 
@@ -284,6 +332,15 @@ namespace kwangwoonmoon
             return false;
         }
 
+        public void AddMoney(ulong money)
+        {
+            CurrentMoney += money;
+
+            MoneyChanged.Invoke();
+        }
+
+
+
 
         // Button Events
 
@@ -301,9 +358,167 @@ namespace kwangwoonmoon
             eventNInfo.Focus();
         }
 
+
+        private void number_textbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))
+            {
+                e.Handled = true;
+            }
+        }
+
+        //Sell Button
+        private void sell_button_Click(object sender, EventArgs e)
+        {
+            bool selected = mystock_listview.SelectedItems.Count > 0;
+            if (selected == false)
+            {
+                MessageBox.Show("종목을 선택해 주세요", "종목 선택 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+            }
+            else
+            {
+                ListViewItem lvi = mystock_listview.SelectedItems[0];
+                TransactionInfo info = (TransactionInfo)lvi.Tag;
+
+                int stockWantQuantity = Convert.ToInt32(total_amount_textbox.Text);
+                ulong totalPrice = (info.CurrentStockPrice * (ulong)stockWantQuantity);
+
+                if (stockWantQuantity > info.StockQuantity)
+                {
+                    MessageBox.Show("판매 가능 수량을 초과하였습니다.", "판매 수량 초과", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    //For DoubleCheck MessageBox
+                    DialogResult DoubleCheck = MessageBox.Show("종목명:"+info.StockName + "\n\n현재가:"+ String.Format("{0:#,0}", info.CurrentStockPrice) +"원\n\n수량:"+stockWantQuantity+ "\n\n총액:" + String.Format("{0:#,0}", totalPrice) +"원\n\n매도주문 하시겠습니까?",
+                     "매도 주문 확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    switch (DoubleCheck)
+                    {
+                        case DialogResult.Yes:
+                            ulong totalBenefit = info.AverageBuyingPrice * (ulong)stockWantQuantity;
+                            AddMoney(totalBenefit);
+
+                            info.DecreaseStockQuantity(stockWantQuantity);
+                            lvi.SubItems[TransactionListColumnType.StockQuantity.ToString()].Text = info.StockQuantity.ToString();
+                            if (info.StockQuantity <= 0)
+                            {
+                                ClearInputControl();
+                                mystock_listview.Items.Remove(lvi);
+                                transactionList.Remove(info);
+                            }
+
+                            break;
+
+                        case DialogResult.No:
+                            break;
+
+                    }
+                   
+                }
+            }
+        }
+
+        // Buy Button
+        private void buy_button_Click(object sender, EventArgs e)
+        {
+
+
+
+            bool selected = stock_listview.SelectedItems.Count > 0;
+            if (selected == false)
+            {
+                MessageBox.Show("종목을 선택해 주세요.", "종목 선택 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+            }
+            else
+            {
+
+                // stock_listView 처리
+                ListViewItem lviyet = stock_listview.SelectedItems[0];
+                Stock stock = (Stock)lviyet.Tag;
+                // mystock_listView 처리
+                ListViewItem lvi = mystock_listview.Items[0];
+                TransactionInfo info = (TransactionInfo)lvi.Tag;
+
+
+
+                int stockWantQuantity = Convert.ToInt32(total_amount_textbox.Text);
+                ulong totalPrice = Convert.ToUInt32(price_textbox.Text.Replace(",", "")) * (ulong)stockWantQuantity;
+
+
+
+                //For DoubleCheck MessageBox
+                DialogResult DoubleCheckBuy = MessageBox.Show("종목명:" + stock.StockName + "\n\n현재가:" + String.Format( "{0:#,0}",stock.StockPrice) + "원\n\n수량:" + stockWantQuantity + "\n\n총액:" + String.Format("{0:#,0}", totalPrice) + "원\n\n매수주문 하시겠습니까?",
+                 "매수 주문 확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+
+                switch (DoubleCheckBuy)
+                {
+                    case DialogResult.Yes:
+
+                        if (totalPrice > CurrentMoney)
+                        {
+                            MessageBox.Show("현재잔고가 부족합니다.", "잔고 부족", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+
+
+                            UseMoney(totalPrice);
+
+
+                            if (info.StockName == stock.StockName)
+                            {//  마이 스탁 리스트뷰 Quantitiy만 증가
+
+                                info.AddTransaction((ulong)info.CurrentStockPrice, stockWantQuantity);
+                                SetTransactionListView();
+                                ClearInputControl();
+
+
+                            }
+                            else
+                            {
+                                TransactionInfo transaction = new TransactionInfo(stock, stock.StockPrice, stockWantQuantity);
+                                transactionList.Add(transaction);
+                                SetTransactionListView();
+                                ClearInputControl();
+                            }
+                        }
+
+                         break;
+
+                    case DialogResult.No:
+
+                        break;
+
+                      
+                }
+            }
+        }
+
+
+
+        private void stock_listview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool selected = stock_listview.SelectedItems.Count > 0;
+            total_amount_textbox.Enabled = price_textbox.Enabled = selected;
+            if (selected == false)
+            {
+                ClearInputControl();
+                return;
+            }
+            ListViewItem lvi = stock_listview.SelectedItems[0];
+            Stock info = (Stock)lvi.Tag;
+            lb_Selected.Text = info.StockName;
+            price_textbox.Text = string.Format("{0:#,###}", info.StockPrice);
+        }
+
         private void plus_button_Click(object sender, EventArgs e)
         {
-            UseMoney(30);
             total_amount_textbox.Text = (Convert.ToInt32(total_amount_textbox.Text) + 1).ToString();
             // 수량에 증가에 따른 총액 업데이트 필요
         }
@@ -315,60 +530,9 @@ namespace kwangwoonmoon
             // 수량에 감소에 따른 총액 업데이트 필요
         }
 
-        private void number_textbox_KeyPress(object sender, KeyPressEventArgs e)
+        private void label6_Click(object sender, EventArgs e)
         {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))
-            {
-                e.Handled = true;
-            }
-        }
 
-        private void sell_button_Click(object sender, EventArgs e)
-        {
-            bool selected = mystock_listview.SelectedItems.Count > 0;
-            if (selected == false)
-            {
-                MessageBox.Show("종목을 선택해 주세요", "선택오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
-            }
-
-            else
-            {
-                ListViewItem lvi = mystock_listview.SelectedItems[0];
-                string strRe = mymoney_label.Text.Replace(",", "");
-
-                ulong stockWantQuantity = Convert.ToUInt64(total_amount_textbox.Text);
-                ulong StockNowQuantity = Convert.ToUInt64(lvi.SubItems[2].Text, CultureInfo.InvariantCulture);
-                if (stockWantQuantity > StockNowQuantity)
-                {
-                    MessageBox.Show("판매 가능 수량을 초과하였습니다.", "판매 수량 초과", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-
-                else
-                {
-
-                    ulong StockNowPrice = Convert.ToUInt64(lvi.SubItems[3].Text, CultureInfo.InvariantCulture);
-                    ulong StockBuyPrice = Convert.ToUInt64(lvi.SubItems[4].Text, CultureInfo.InvariantCulture);
-                    ulong nowbenefit = stockWantQuantity * StockNowPrice;
-                    ulong YourBenefit = stockWantQuantity * StockBuyPrice;
-                    ulong NowBalance = Convert.ToUInt64(strRe);
-                    ulong TotalBenefit = nowbenefit - YourBenefit;
-                    ulong Afterbalance = NowBalance + TotalBenefit;
-                    CurrentMoney = Convert.ToUInt64(Afterbalance);
-                    mymoney_label.Text = CurrentMoney.ToString();
-                    ulong AfterQuantatiy = StockNowQuantity - stockWantQuantity;
-                    lvi.SubItems[2].Text = AfterQuantatiy.ToString();
-                    ClearInputControl();
-                    if (AfterQuantatiy <= 0)
-                    {
-                        mystock_listview.Items.Remove(lvi);
-                    }
-                    UpdateMoneyText();
-                }
-
-            }
         }
     }
 }
