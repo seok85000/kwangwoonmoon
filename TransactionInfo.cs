@@ -71,5 +71,6 @@ namespace kwangwoonmoon
         {
             StockQuantity -= quantity;
         }
+
     }
 }
