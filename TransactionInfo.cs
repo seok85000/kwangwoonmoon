@@ -19,7 +19,6 @@ namespace kwangwoonmoon
     {
         public Stock targetStock;
 
-        public List<KeyValuePair<ulong, int>> transactionList;
         public ulong AverageBuyingPrice { get; private set; }
         public int StockQuantity { get; private set; }
 
@@ -64,20 +63,6 @@ namespace kwangwoonmoon
 
         public void AddTransaction(ulong price, int quantity)
         {
-            int index = transactionList.FindIndex((info) =>
-            {
-                return (info.Key == price);
-            });
-
-            if (index >= 0)
-            {
-                transactionList[index] = new KeyValuePair<ulong, int>(price, transactionList[index].Value + quantity);
-            }
-            else
-            {
-                transactionList.Add(new KeyValuePair<ulong, int>(price, quantity));
-            }
-
             AverageBuyingPrice = (TotalPrice + price * (ulong)quantity) / (ulong)(StockQuantity + quantity);
             StockQuantity += quantity;
         }
