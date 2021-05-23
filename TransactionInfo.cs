@@ -49,7 +49,7 @@ namespace kwangwoonmoon
         {
             get
             {
-                return (AverageBuyingPrice / targetStock.StockPrice) * 100f;
+                return (((long)targetStock.StockPrice - (long)AverageBuyingPrice) / (float)AverageBuyingPrice) * 100f;
             }
         }
 
