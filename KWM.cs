@@ -219,10 +219,6 @@ namespace kwangwoonmoon
                 price.Name = StockColumType.StockPrice.ToString();
                 price.Text = s.StockPrice.ToString();
 
-                var price = item.SubItems.Add(new ListViewItem.ListViewSubItem());
-                price.Name = StockColumType.StockPrice.ToString();
-                price.Text = s.StockPrice.ToString();
-
                 var ratio = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 ratio.Name = StockColumType.StockRatio.ToString();
                 ratio.Text = s.StockRatio.ToString();
@@ -518,17 +514,22 @@ namespace kwangwoonmoon
             ListViewItem lvi = stock_listview.SelectedItems[0];
             Stock info = (Stock)lvi.Tag;
             lb_Selected.Text = info.StockName;
+            total_amount_textbox.Text = "0";
             price_textbox.Text = string.Format("{0:#,###}", info.StockPrice);
         }
 
         private void plus_button_Click(object sender, EventArgs e)
         {
+            if (total_amount_textbox.Text.Length == 0) total_amount_textbox.Text = "0";
+
             total_amount_textbox.Text = (Convert.ToInt32(total_amount_textbox.Text) + 1).ToString();
             // 수량에 증가에 따른 총액 업데이트 필요
         }
 
         private void minus_button_Click(object sender, EventArgs e)
         {
+            if (total_amount_textbox.Text.Length == 0) total_amount_textbox.Text = "0";
+
             if (Convert.ToInt32(total_amount_textbox.Text) <= 0) total_amount_textbox.Text = "0";
             else total_amount_textbox.Text = (Convert.ToInt32(total_amount_textbox.Text) - 1).ToString();
             // 수량에 감소에 따른 총액 업데이트 필요

@@ -391,7 +391,6 @@ namespace kwangwoonmoon
             this.label6.Size = new System.Drawing.Size(170, 25);
             this.label6.TabIndex = 60;
             this.label6.Text = "판매중인 주식";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
 
             // 
             // KWM
