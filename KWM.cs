@@ -75,7 +75,7 @@ namespace kwangwoonmoon
             stocks.Add(stock);
             stocks.Add(stock2);
             SetStockListView();
-            transactionList.Add(new TransactionInfo(stock, 9000, 15));
+            transactionList.Add(new TransactionInfo(stock, 19000, 15));
             SetTransactionListView();
         }
 
@@ -251,7 +251,7 @@ namespace kwangwoonmoon
 
                 var ratio = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 ratio.Name = TransactionListColumnType.ProfitRatio.ToString();
-                ratio.Text = info.ProfitRatio.ToString();
+                ratio.Text = info.ProfitRatio.ToString("N2");
 
                 item.Tag = info;
             }
