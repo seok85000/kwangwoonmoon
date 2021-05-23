@@ -72,9 +72,5 @@ namespace kwangwoonmoon
             StockQuantity -= quantity;
         }
 
-        public void IncreaseStockQuantity(int quantity)
-        {
-            StockQuantity += quantity;
-        }
     }
 }

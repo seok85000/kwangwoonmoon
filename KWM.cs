@@ -23,7 +23,6 @@ namespace kwangwoonmoon
         List<Stock> stocks = new List<Stock>();
         List<TransactionInfo> transactionList = new List<TransactionInfo>();
 
-
         public static int DefaultEventSize = 3;
         public static int DefaultRandomEventSize = 2;
         List<List<Event>> events = new List<List<Event>>();
@@ -69,6 +68,7 @@ namespace kwangwoonmoon
             stock_listview.Columns.RemoveAt(stock_listview.Columns.Count - 1);
 
 
+
             // For Test
             Stock stock = new Stock("삼성전자", 10000);
             Stock stock2 = new Stock("SK하이닉스", 122500);
@@ -83,6 +83,7 @@ namespace kwangwoonmoon
         {
             mystock_listview.View = View.Details;
 
+
             mystock_listview.Columns.Add(TransactionListColumnType.StockName.ToString(), "종목명");
             mystock_listview.Columns.Add(TransactionListColumnType.AverageBuyingPrice.ToString(), "매수평균가");
             mystock_listview.Columns.Add(TransactionListColumnType.StockQuantity.ToString(), "보유 수량");
@@ -94,7 +95,6 @@ namespace kwangwoonmoon
             mystock_listview.Columns.RemoveAt(mystock_listview.Columns.Count - 1);
         }
 
-      
 
         private void KWM_Load(object sender, EventArgs e)
         {
@@ -214,6 +214,10 @@ namespace kwangwoonmoon
                 ListViewItem item = stock_listview.Items.Add(new ListViewItem());
                 item.Name = StockColumType.StockName.ToString();
                 item.Text = s.StockName;
+                
+                var price = item.SubItems.Add(new ListViewItem.ListViewSubItem());
+                price.Name = StockColumType.StockPrice.ToString();
+                price.Text = s.StockPrice.ToString();
 
                 var price = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 price.Name = StockColumType.StockPrice.ToString();
@@ -340,8 +344,6 @@ namespace kwangwoonmoon
         }
 
 
-
-
         // Button Events
 
         private void news_button_Click(object sender, EventArgs e)
@@ -383,6 +385,7 @@ namespace kwangwoonmoon
                 TransactionInfo info = (TransactionInfo)lvi.Tag;
 
                 int stockWantQuantity = Convert.ToInt32(total_amount_textbox.Text);
+
                 ulong totalPrice = (info.CurrentStockPrice * (ulong)stockWantQuantity);
 
                 if (stockWantQuantity > info.StockQuantity)
@@ -391,6 +394,7 @@ namespace kwangwoonmoon
                 }
                 else
                 {
+
                     //For DoubleCheck MessageBox
                     DialogResult DoubleCheck = MessageBox.Show("종목명:"+info.StockName + "\n\n현재가:"+ String.Format("{0:#,0}", info.CurrentStockPrice) +"원\n\n수량:"+stockWantQuantity+ "\n\n총액:" + String.Format("{0:#,0}", totalPrice) +"원\n\n매도주문 하시겠습니까?",
                      "매도 주문 확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -530,9 +534,6 @@ namespace kwangwoonmoon
             // 수량에 감소에 따른 총액 업데이트 필요
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }
