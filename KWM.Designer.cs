@@ -58,6 +58,7 @@ namespace kwangwoonmoon
             this.plus_button = new System.Windows.Forms.Button();
             this.minus_button = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.nextTurn_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label8
@@ -146,6 +147,7 @@ namespace kwangwoonmoon
             this.info_shop_button.TabIndex = 44;
             this.info_shop_button.Text = "정보 상점";
             this.info_shop_button.UseVisualStyleBackColor = true;
+            this.info_shop_button.Click += new System.EventHandler(this.info_shop_button_Click);
             // 
             // news_button
             // 
@@ -386,6 +388,18 @@ namespace kwangwoonmoon
             this.label6.TabIndex = 60;
             this.label6.Text = "판매중인 주식";
             // 
+            // nextTurn_button
+            // 
+            this.nextTurn_button.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.nextTurn_button.Location = new System.Drawing.Point(766, 19);
+            this.nextTurn_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.nextTurn_button.Name = "nextTurn_button";
+            this.nextTurn_button.Size = new System.Drawing.Size(143, 63);
+            this.nextTurn_button.TabIndex = 43;
+            this.nextTurn_button.Text = "다음 턴";
+            this.nextTurn_button.UseVisualStyleBackColor = true;
+            this.nextTurn_button.Click += new System.EventHandler(this.nextTurn_button_Click);
+            // 
             // KWM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -409,6 +423,7 @@ namespace kwangwoonmoon
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.info_shop_button);
+            this.Controls.Add(this.nextTurn_button);
             this.Controls.Add(this.news_button);
             this.Controls.Add(this.sell_button);
             this.Controls.Add(this.label4);
@@ -461,6 +476,7 @@ namespace kwangwoonmoon
         private System.Windows.Forms.Button plus_button;
         private System.Windows.Forms.Button minus_button;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button nextTurn_button;
     }
 }
 

@@ -26,6 +26,18 @@ namespace kwangwoonmoon
         public const float InfluenceRandomPower = 1.5f;
 
 
+        public Event(string eventTitle, string eventDescription)
+        {
+            EventTitle = eventTitle;
+            EventDescription = eventDescription;
+        }
+
+        public void AddInfluenceStock(Stock stock)
+        {
+            influenceStock.Add(stock);
+        }
+
+
         // 영향을 주는 종목의 등락률을 갱신한다.
         public void StockUpdate()
         {

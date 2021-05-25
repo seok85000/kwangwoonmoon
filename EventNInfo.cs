@@ -38,6 +38,15 @@ namespace kwangwoonmoon
                 var description = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 description.Name = EventListColumnType.Description.ToString();
                 description.Text = e.EventDescription;
+
+                // Test
+                var target = item.SubItems.Add(new ListViewItem.ListViewSubItem());
+                target.Name = "target";
+                target.Text = e.influenceStock[0].StockName.ToString();
+                var ratio = item.SubItems.Add(new ListViewItem.ListViewSubItem());
+                ratio.Name = "ratio";
+                ratio.Text = e.InfluencePower.ToString();
+                // --------------------
             }
 
             //eventListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -66,6 +75,11 @@ namespace kwangwoonmoon
             eventListView.Columns[eventListView.Columns.Count - 1].Width = -1;
             eventListView.Columns.Add(EventListColumnType.Description.ToString(), "설명");
             eventListView.Columns[eventListView.Columns.Count - 1].Width = -2;
+
+            // Test
+            eventListView.Columns.Add("target", "Stock");
+            eventListView.Columns.Add("ratio", "등락률");
+            // --------------------
         }
     }
 }

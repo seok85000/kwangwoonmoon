@@ -24,7 +24,7 @@ namespace kwangwoonmoon
         public string StockName { get; private set; }
 
         // 주가
-        public ulong StockPrice { get; private set; }
+        public long StockPrice { get; private set; }
 
         // 지난 턴 주가
         float LastStockPrice { get; set; }
@@ -34,7 +34,7 @@ namespace kwangwoonmoon
 
         float NextStockRatio { get; set; }
 
-        public Stock(string name, ulong price)
+        public Stock(string name, long price)
         {
             StockName = name;
             StockPrice = price;
@@ -51,12 +51,13 @@ namespace kwangwoonmoon
         public void UpdateStockRatio()
         {
             LastStockPrice = StockPrice;
-            StockPrice = (ulong)(StockPrice * NextStockRatio);
+            StockPrice = (long)(StockPrice * (1f + NextStockRatio * 0.01f));
             StockRatio = NextStockRatio;
             NextStockRatio = 0;
 
             // ListViewItem 데이터 업데이트
-
+            ReferenceStock.SubItems[StockColumType.StockPrice.ToString()].Text = StockPrice.ToString("N0");
+            ReferenceStock.SubItems[StockColumType.StockRatio.ToString()].Text = StockRatio.ToString("N2") + "%";
         }
     }
 }

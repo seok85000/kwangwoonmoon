@@ -13,6 +13,7 @@ namespace kwangwoonmoon
     public partial class KWM : Form
     {
         public static KWM Instance = null;
+        public Random random = new Random();
 
         public Action MoneyChanged;
 
@@ -41,7 +42,7 @@ namespace kwangwoonmoon
 
         InfoShop infoShop = null;
 
-        public ulong CurrentMoney { get; private set; } = 123456789;
+        public long CurrentMoney { get; private set; } = 123456789;
 
 
         public KWM()
@@ -61,37 +62,42 @@ namespace kwangwoonmoon
 
             stock_listview.Columns.Add(StockColumType.StockName.ToString(), "종목명", 200, HorizontalAlignment.Right, 0);
             stock_listview.Columns.Add(StockColumType.StockPrice.ToString(), "현재가", 100, HorizontalAlignment.Right, 0);
-            stock_listview.Columns.Add(StockColumType.StockRatio.ToString(), "등락률", 80, HorizontalAlignment.Right, 0);
-
-
-            // For Test
-            Stock stock = new Stock("삼성전자", 10000);
-            Stock stock2 = new Stock("SK하이닉스", 122500);
-            stocks.Add(stock);
-            stocks.Add(stock2);
-            SetStockListView();
-            transactionList.Add(new TransactionInfo(stock, 19000, 15));
-            SetTransactionListView();
+            stock_listview.Columns.Add(StockColumType.StockRatio.ToString(), "등락률", 100, HorizontalAlignment.Right, 0);
         }
 
         void InitTransactionListView()
         {
             mystock_listview.View = View.Details;
 
-
             mystock_listview.Columns.Add(TransactionListColumnType.StockName.ToString(), "종목명", 200, HorizontalAlignment.Right, 0);
             mystock_listview.Columns.Add(TransactionListColumnType.AverageBuyingPrice.ToString(), "매수평균가", 100, HorizontalAlignment.Right, 0);
             mystock_listview.Columns.Add(TransactionListColumnType.StockQuantity.ToString(), "보유 수량", 100, HorizontalAlignment.Right, 0);
-            mystock_listview.Columns.Add(TransactionListColumnType.TotalPrice.ToString(), "평가금액", 100, HorizontalAlignment.Right, 0);
-            mystock_listview.Columns.Add(TransactionListColumnType.ProfitRatio.ToString(), "수익률", 80, HorizontalAlignment.Right, 0);
+            mystock_listview.Columns.Add(TransactionListColumnType.EvaluationAmount.ToString(), "평가금액", 100, HorizontalAlignment.Right, 0);
+            mystock_listview.Columns.Add(TransactionListColumnType.ValuationProfitNLoss.ToString(), "평가손익", 100, HorizontalAlignment.Right, 0);
+            mystock_listview.Columns.Add(TransactionListColumnType.ProfitRatio.ToString(), "수익률", 100, HorizontalAlignment.Right, 0);
         }
 
 
         private void KWM_Load(object sender, EventArgs e)
         {
-            NextTurn();
             InitStockListView();
             InitTransactionListView();
+
+            // For Test
+            Stock stock = new Stock("삼성전자", 10000);
+            Stock stock2 = new Stock("SK하이닉스", 122500);
+            stocks.Add(stock);
+            stocks.Add(stock2);
+            stocks.Add(new Stock("주식1", 78924));
+            stocks.Add(new Stock("주식2", 22036));
+            stocks.Add(new Stock("주식3", 4550));
+            stocks.Add(new Stock("주식4", 598));
+            transactionList.Add(new TransactionInfo(stock, 19000, 15));
+            // --------------------
+
+            SetStockListView();
+
+            NextTurn();
 
             // 라벨 Text 값 초기화
             this.finish_label.Text = "/ " + LASTTURN.ToString();
@@ -107,6 +113,9 @@ namespace kwangwoonmoon
             UpdateEvent();
 
             ++Turn;
+
+            SetEventToEventNInfo();
+            SetTransactionListView();
 
             // 업데이트 된 Turn 을 label 에 적용
             if (Turn < 10) gameturn_label.Text = "0" + Turn.ToString();
@@ -124,9 +133,9 @@ namespace kwangwoonmoon
         Event GetRandomEvent()
         {
             //return new Event();
-            Event e = new Event();
-            e.EventTitle = "테스트 이벤트";
-            e.EventDescription = "이벤트 설명";
+            Event e = new Event("테스트 - " + random.Next(10).ToString(), "이벤트 설명");
+            e.AddInfluenceStock(stocks[random.Next(0, stocks.Count)]);
+            e.InfluencePower = (random.Next(2) == 0) ? ((float)random.NextDouble()) * 100f : -(float)random.NextDouble() * 30f;
             return e;
         }
 
@@ -142,6 +151,8 @@ namespace kwangwoonmoon
             {
                 foreach (Event e in CurrentEvents)
                 {
+                    e.StockUpdate(); // Stock 등락률 갱신
+
                     foreach (Event ie in e.influenceEvent)
                     {
                         newEvents.Add(ie);
@@ -149,7 +160,6 @@ namespace kwangwoonmoon
                 }
             }
 
-            Random random = new Random();
             int targetEventSize = DefaultEventSize + random.Next(0, DefaultRandomEventSize + 1);
 
             // 이벤트 랜덤 생성
@@ -159,13 +169,6 @@ namespace kwangwoonmoon
             }
 
             events.Add(newEvents);
-            SetEventToEventNInfo();
-
-            // Stock 등락률 업데이트
-            foreach (Event e in newEvents)
-            {
-                e.StockUpdate();
-            }
 
             UpdateStock();
         }
@@ -208,11 +211,11 @@ namespace kwangwoonmoon
                 
                 var price = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 price.Name = StockColumType.StockPrice.ToString();
-                price.Text = s.StockPrice.ToString();
+                price.Text = s.StockPrice.ToString("N0");
 
                 var ratio = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 ratio.Name = StockColumType.StockRatio.ToString();
-                ratio.Text = s.StockRatio.ToString() + "%";
+                ratio.Text = s.StockRatio.ToString("N2") + "%";
 
                 item.Tag = s;
                 s.ReferenceStock = item;
@@ -230,15 +233,19 @@ namespace kwangwoonmoon
 
                 var avgPrice = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 avgPrice.Name = TransactionListColumnType.AverageBuyingPrice.ToString();
-                avgPrice.Text = info.AverageBuyingPrice.ToString();
+                avgPrice.Text = info.AverageBuyingPrice.ToString("N0");
 
                 var quantity = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 quantity.Name = TransactionListColumnType.StockQuantity.ToString();
-                quantity.Text = info.StockQuantity.ToString();
+                quantity.Text = info.StockQuantity.ToString("N0");
 
-                var totalPrice = item.SubItems.Add(new ListViewItem.ListViewSubItem());
-                totalPrice.Name = TransactionListColumnType.TotalPrice.ToString();
-                totalPrice.Text = info.TotalPrice.ToString();
+                var evaluationAmount = item.SubItems.Add(new ListViewItem.ListViewSubItem());
+                evaluationAmount.Name = TransactionListColumnType.EvaluationAmount.ToString();
+                evaluationAmount.Text = info.EvaluationAmount.ToString("N0");
+
+                var valuationProfitNLoss = item.SubItems.Add(new ListViewItem.ListViewSubItem());
+                valuationProfitNLoss.Name = TransactionListColumnType.ValuationProfitNLoss.ToString();
+                valuationProfitNLoss.Text = info.ValuationProfitNLoss.ToString("N0");
 
                 var ratio = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 ratio.Name = TransactionListColumnType.ProfitRatio.ToString();
@@ -310,7 +317,7 @@ namespace kwangwoonmoon
 
         // Money
 
-        public bool UseMoney(ulong money)
+        public bool UseMoney(long money)
         {
             if (CurrentMoney >= money)
             {
@@ -323,7 +330,7 @@ namespace kwangwoonmoon
             return false;
         }
 
-        public void AddMoney(ulong money)
+        public void AddMoney(long money)
         {
             CurrentMoney += money;
 
@@ -373,7 +380,7 @@ namespace kwangwoonmoon
 
                 int stockWantQuantity = Convert.ToInt32(total_amount_textbox.Text);
 
-                ulong totalPrice = (info.CurrentStockPrice * (ulong)stockWantQuantity);
+                long totalPrice = (info.CurrentStockPrice * stockWantQuantity);
 
                 if (stockWantQuantity > info.StockQuantity)
                 {
@@ -389,7 +396,7 @@ namespace kwangwoonmoon
                     switch (DoubleCheck)
                     {
                         case DialogResult.Yes:
-                            ulong totalBenefit = info.AverageBuyingPrice * (ulong)stockWantQuantity;
+                            long totalBenefit = info.AverageBuyingPrice * stockWantQuantity;
                             AddMoney(totalBenefit);
 
                             info.DecreaseStockQuantity(stockWantQuantity);
@@ -438,7 +445,7 @@ namespace kwangwoonmoon
 
 
                 int stockWantQuantity = Convert.ToInt32(total_amount_textbox.Text);
-                ulong totalPrice = Convert.ToUInt32(price_textbox.Text.Replace(",", "")) * (ulong)stockWantQuantity;
+                long totalPrice = Convert.ToUInt32(price_textbox.Text.Replace(",", "")) * stockWantQuantity;
 
 
 
@@ -465,7 +472,7 @@ namespace kwangwoonmoon
                             if (info.StockName == stock.StockName)
                             {//  마이 스탁 리스트뷰 Quantitiy만 증가
 
-                                info.AddTransaction((ulong)info.CurrentStockPrice, stockWantQuantity);
+                                info.AddTransaction(info.CurrentStockPrice, stockWantQuantity);
                                 SetTransactionListView();
                                 ClearInputControl();
 
@@ -526,6 +533,9 @@ namespace kwangwoonmoon
             // 수량에 감소에 따른 총액 업데이트 필요
         }
 
-
+        private void nextTurn_button_Click(object sender, EventArgs e)
+        {
+            NextTurn();
+        }
     }
 }
