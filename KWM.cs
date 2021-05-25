@@ -59,14 +59,9 @@ namespace kwangwoonmoon
         {
             stock_listview.View = View.Details;
 
-            stock_listview.Columns.Add(StockColumType.StockName.ToString(), "종목명");
-            stock_listview.Columns.Add(StockColumType.StockPrice.ToString(), "현재가");
-            stock_listview.Columns.Add(StockColumType.StockRatio.ToString(), "등락률");
-
-            stock_listview.Columns.Add("");
-            stock_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            stock_listview.Columns.RemoveAt(stock_listview.Columns.Count - 1);
-
+            stock_listview.Columns.Add(StockColumType.StockName.ToString(), "종목명", 200, HorizontalAlignment.Right, 0);
+            stock_listview.Columns.Add(StockColumType.StockPrice.ToString(), "현재가", 100, HorizontalAlignment.Right, 0);
+            stock_listview.Columns.Add(StockColumType.StockRatio.ToString(), "등락률", 80, HorizontalAlignment.Right, 0);
 
 
             // For Test
@@ -84,15 +79,11 @@ namespace kwangwoonmoon
             mystock_listview.View = View.Details;
 
 
-            mystock_listview.Columns.Add(TransactionListColumnType.StockName.ToString(), "종목명");
-            mystock_listview.Columns.Add(TransactionListColumnType.AverageBuyingPrice.ToString(), "매수평균가");
-            mystock_listview.Columns.Add(TransactionListColumnType.StockQuantity.ToString(), "보유 수량");
-            mystock_listview.Columns.Add(TransactionListColumnType.TotalPrice.ToString(), "평가금액");
-            mystock_listview.Columns.Add(TransactionListColumnType.ProfitRatio.ToString(), "수익률");
-
-            mystock_listview.Columns.Add("");
-            mystock_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            mystock_listview.Columns.RemoveAt(mystock_listview.Columns.Count - 1);
+            mystock_listview.Columns.Add(TransactionListColumnType.StockName.ToString(), "종목명", 200, HorizontalAlignment.Right, 0);
+            mystock_listview.Columns.Add(TransactionListColumnType.AverageBuyingPrice.ToString(), "매수평균가", 100, HorizontalAlignment.Right, 0);
+            mystock_listview.Columns.Add(TransactionListColumnType.StockQuantity.ToString(), "보유 수량", 100, HorizontalAlignment.Right, 0);
+            mystock_listview.Columns.Add(TransactionListColumnType.TotalPrice.ToString(), "평가금액", 100, HorizontalAlignment.Right, 0);
+            mystock_listview.Columns.Add(TransactionListColumnType.ProfitRatio.ToString(), "수익률", 80, HorizontalAlignment.Right, 0);
         }
 
 
@@ -221,7 +212,7 @@ namespace kwangwoonmoon
 
                 var ratio = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 ratio.Name = StockColumType.StockRatio.ToString();
-                ratio.Text = s.StockRatio.ToString();
+                ratio.Text = s.StockRatio.ToString() + "%";
 
                 item.Tag = s;
                 s.ReferenceStock = item;
@@ -251,7 +242,7 @@ namespace kwangwoonmoon
 
                 var ratio = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 ratio.Name = TransactionListColumnType.ProfitRatio.ToString();
-                ratio.Text = info.ProfitRatio.ToString("N2");
+                ratio.Text = info.ProfitRatio.ToString("N2") + "%";
 
                 item.Tag = info;
             }
