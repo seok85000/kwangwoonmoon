@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace kwangwoonmoon
 {
     public partial class KWM : Form
     {
         public static KWM Instance = null;
-        public Random random = new Random();
+        public static Random random = new Random();
 
         public Action MoneyChanged;
 
@@ -26,6 +27,7 @@ namespace kwangwoonmoon
 
         public static int DefaultEventSize = 3;
         public static int DefaultRandomEventSize = 2;
+        List<Event> ReferenceEvents = new List<Event>();
         List<List<Event>> events = new List<List<Event>>();
         List<Event> CurrentEvents
         {
@@ -56,6 +58,55 @@ namespace kwangwoonmoon
 
             MoneyChanged += UpdateMoneyText;
         }
+
+        void InitStockList()
+        {
+            // For Test
+            Stock stock = new Stock("삼성전자", 10000);
+            Stock stock2 = new Stock("SK하이닉스", 122500);
+            stocks.Add(stock);
+            stocks.Add(stock2);
+            stocks.Add(new Stock("주식1", 78924));
+            stocks.Add(new Stock("주식2", 22036));
+            stocks.Add(new Stock("주식3", 4550));
+            stocks.Add(new Stock("주식4", 598));
+            transactionList.Add(new TransactionInfo(stock, 19000, 15));
+            // --------------------
+        }
+
+        void InitEventList()
+        {
+            XmlDocument eventXml = new XmlDocument();
+            eventXml.Load(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("kwangwoonmoon.Event_List.xml"));
+            XmlNode eventNodes = eventXml.SelectSingleNode("eventlist");
+            foreach (XmlNode eventNode in eventNodes.SelectNodes("event"))
+            {
+                ReferenceEvents.Add(GetEventFromXml(eventNode));
+            }
+        }
+
+        Event GetEventFromXml(XmlNode eventNode)
+        {
+            Event ev = new Event(eventNode.SelectSingleNode("title").InnerText);
+            ev.InfluenceStockSize = int.Parse(eventNode.Attributes["size"].Value);
+
+            foreach (string typeStr in eventNode.Attributes["type"].Value.Split(','))
+            {
+                ev.IsPositiveEvent.Add(typeStr == "up");
+            }
+
+            XmlNode affectNode = eventNode.SelectSingleNode("affectevent");
+            if (affectNode != null)
+            {
+                foreach (XmlNode afNode in affectNode.SelectNodes("event"))
+                {
+                    ev.AddInfluenceEvent(GetEventFromXml(afNode));
+                }
+            }
+
+            return ev;
+        }
+
         void InitStockListView()
         {
             stock_listview.View = View.Details;
@@ -80,20 +131,10 @@ namespace kwangwoonmoon
 
         private void KWM_Load(object sender, EventArgs e)
         {
+            InitStockList();
+            InitEventList();
             InitStockListView();
             InitTransactionListView();
-
-            // For Test
-            Stock stock = new Stock("삼성전자", 10000);
-            Stock stock2 = new Stock("SK하이닉스", 122500);
-            stocks.Add(stock);
-            stocks.Add(stock2);
-            stocks.Add(new Stock("주식1", 78924));
-            stocks.Add(new Stock("주식2", 22036));
-            stocks.Add(new Stock("주식3", 4550));
-            stocks.Add(new Stock("주식4", 598));
-            transactionList.Add(new TransactionInfo(stock, 19000, 15));
-            // --------------------
 
             SetStockListView();
 
@@ -132,11 +173,19 @@ namespace kwangwoonmoon
 
         Event GetRandomEvent()
         {
-            //return new Event();
-            Event e = new Event("테스트 - " + random.Next(10).ToString(), "이벤트 설명");
-            e.AddInfluenceStock(stocks[random.Next(0, stocks.Count)]);
-            e.InfluencePower = (random.Next(2) == 0) ? ((float)random.NextDouble()) * 100f : -(float)random.NextDouble() * 30f;
-            return e;
+            Event ev = new Event(ReferenceEvents[random.Next(0, ReferenceEvents.Count)]);
+            for (int i = 0; i < ev.InfluenceStockSize;)
+            {
+                Stock stock = GetRandomStock();
+                if (!ev.influenceStock.Contains(stock))
+                {
+                    ev.AddInfluenceStock(stock);
+                    i++;
+                }
+            }
+            ev.UpdateInfluenceEvent();
+
+            return ev;
         }
 
         /*
@@ -195,6 +244,16 @@ namespace kwangwoonmoon
             }
 
 
+        }
+
+        public List<Stock> GetStocks()
+        {
+            return stocks;
+        }
+
+        public Stock GetRandomStock()
+        {
+            return stocks[random.Next(0, stocks.Count)];
         }
 
 

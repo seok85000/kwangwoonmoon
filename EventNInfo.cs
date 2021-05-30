@@ -15,7 +15,6 @@ namespace kwangwoonmoon
         public enum EventListColumnType
         {
             Title = 0,
-            Description,
         }
 
 
@@ -33,23 +32,28 @@ namespace kwangwoonmoon
             {
                 ListViewItem item = eventListView.Items.Add(new ListViewItem());
                 item.Name = EventListColumnType.Title.ToString();
-                item.Text = e.EventTitle;
-
-                var description = item.SubItems.Add(new ListViewItem.ListViewSubItem());
-                description.Name = EventListColumnType.Description.ToString();
-                description.Text = e.EventDescription;
+                item.Text = e.Title;
 
                 // Test
                 var target = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 target.Name = "target";
-                target.Text = e.influenceStock[0].StockName.ToString();
+                string newTargetStr = "";
+                foreach (var st in e.influenceStock)
+                {
+                    newTargetStr += (st.StockName + ", ");
+                }
+                target.Text = newTargetStr;
+
                 var ratio = item.SubItems.Add(new ListViewItem.ListViewSubItem());
                 ratio.Name = "ratio";
-                ratio.Text = e.InfluencePower.ToString();
+                string newRatioStr = "";
+                foreach(var isP in e.IsPositiveEvent)
+                {
+                    newRatioStr += isP.ToString() + ", ";
+                }
+                ratio.Text = newRatioStr;
                 // --------------------
             }
-
-            //eventListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         private void OKButton_Click(object sender, EventArgs e)
@@ -73,8 +77,6 @@ namespace kwangwoonmoon
 
             eventListView.Columns.Add(EventListColumnType.Title.ToString(), "제목");
             eventListView.Columns[eventListView.Columns.Count - 1].Width = -1;
-            eventListView.Columns.Add(EventListColumnType.Description.ToString(), "설명");
-            eventListView.Columns[eventListView.Columns.Count - 1].Width = -2;
 
             // Test
             eventListView.Columns.Add("target", "Stock");

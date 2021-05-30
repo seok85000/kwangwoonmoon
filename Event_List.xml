@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<eventlist>
+  <event size="2" type="up,up">
+    <title>{0} 나라와 {1} 나라 간 FTA (Free Tax Association) 협상이 이루어져 전 세계적으로 화제...!</title>
+  </event>
+  <event size="2" type="up,down">
+  <title>{1} 나라가 {0} 나라에게 주장하던 역사적 사실이 거짓으로 밝혀져 충격...!</title>
+  </event>
+  <event size="2" type="up,down">
+    <title>{0} 나라가 {1} 나라에게 C 사건에 대해 '유감' 표현.. {1} 나라는 '죄송하다' 라고 대답..</title>
+  </event>
+  <event size="1" type="up">
+    <title>{0} 나라에서 석유가 최초로 발견..! 에너지 지도에 변동 가능성 생겨..!</title>
+  </event>
+  <event size="1" type="up">
+    <title>{0} 나라 해저에 새로운 에너지 자원 발견..! 개발 가능성 농후..</title>
+  </event>
+  <event size="1" type="up">
+    <title>다음 올림픽 개최국은 {0} 나라의 도시로 확정..</title>
+    <affectevent>
+      <event size="3" type="up,up,up">
+        <title>올림픽 결과 1등 {0} 나라, 2등 {1} 나라, 3등 {2} 나라...</title>
+      </event>
+    </affectevent>
+  </event>
+  <event size="1" type="up">
+    <title>{0} 나라 등 근접 8개국이 GU (Grand United) 창설.</title>
+  </event>
+  <event size="1" type="up">
+    <title>{0} 나라가 전세계적인 사회적 복지를 위해 JB (JunSeGuea Bokge) 창설 제안.</title>
+  </event>
+  <event size="1" type="up">
+    <title>{0} 나라가 현재 B 산업에서 강세를 보이는 중.. B 산업 중 1위..!</title>
+  </event>
+  <event size="1" type="up">
+    <title>전세계가 B 사건 때문에 곤욕을 치르는 가운데.. {0} 나라가 보이는 압도적 존재감...</title>
+  </event>
+  <event size="1" type="up">
+    <title>{0} 나라가 보여주는 B 사건을 대처하는 정답..</title>
+  </event>
+  <event size="1" type="up">
+    <title>전 세계가 {0} 나라의 사회복지를 보고 배워야 한다고 하는 중...!</title>
+  </event>
+  <event size="1" type="up">
+    <title>{0} 나라가 B 사건에 대한 백신 개발 성공..!</title>
+  </event>
+  <event size="1" type="up">
+    <title>{0} 나라에 첫 노벨평화상 수상자 등장..! 힘든 환경 속 사소한 실천이 중요..</title>
+  </event>
+  <event size="0" type="down">
+    <title>전세계를 강타한 B 사건.. 해결책은 존재하는가..?</title>
+    <affectevent>
+      <event size="1" type="down">
+        <title>B 사건의 발생지는 사실 {0} 나라?! {0} 나라 "사실 유무 제대로 확인되지 않았다"</title>
+        <affectevent>
+          <event size="0" type="down">
+            <title>아직 줄어들지 않은 "B 사건 임팩트" 언제까지 지속되나..</title>
+          </event>
+        </affectevent>
+      </event>
+    </affectevent>
+  </event>
+  <event size="1" type="down">
+    <title>JB (JunSeGuea Bokge) 에서 {0} 나라에게 탈퇴 권고.. 사실상 다른 노선 선언..!</title>
+    <affectevent>
+      <event size="1" type="down">
+        <title>{0} 나라 GU (Grand United) 탈퇴 선언..! {0} 나라 "우리와는 방향이 다르다"</title>
+      </event>
+    </affectevent>
+  </event>
+  <event size="1" type="down">
+    <title>B 산업에 강세를 보이던 {0} 나라, 점차 순위가 밀리는 중..</title>
+  </event>
+  <event size="1" type="down">
+    <title>{0} 나라에 해적이 현재 적극적으로 행동 중이라고 알려져 충격..!</title>
+    <affectevent>
+      <event size="1" type="down">
+        <title>{0} 나라 "자국민을 괴롭히는 해적 행위 멈춰라", 해적은 요지부동</title>
+      </event>
+    </affectevent>
+  </event>
+  <event size="0" type="down">
+    <title>현재 전세계는 "쓰레기 앓이" 중.. 쓰레기 처리 방법 곤란..</title>
+  </event>
+  <event size="1" type="down">
+    <title>{0} 나라 근처 바다에 불법 폐수가 흘러나와.. {0} 나라 "자국에서 나온 것 아니다"</title>
+    <affectevent>
+      <event size="1" type="down">
+        <title>{0} 나라 수뇌부에서 100억 단위 비리가 있었던 것으로 밝혀져 자국민들 충격..!</title>
+        <affectevent>
+          <event size="1" type="down">
+            <title>비리의 충격으로 {0} 나라에서 다수의 이민자가 발생..</title>
+          </event>
+        </affectevent>
+      </event>
+    </affectevent>
+  </event>
+</eventlist>

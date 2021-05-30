@@ -11,8 +11,7 @@ namespace kwangwoonmoon
         // 제목
         public string EventTitle;
 
-        // 정보
-        public string EventDescription;
+        public int InfluenceStockSize = 0;
 
         // 영향을 주는 종목
         public List<Stock> influenceStock = new List<Stock>();
@@ -20,21 +19,86 @@ namespace kwangwoonmoon
         // 영향을 주는 이벤트
         public List<Event> influenceEvent = new List<Event>();
 
-        // 영향을 주는 정도
-        public float InfluencePower;
+        public List<bool> IsPositiveEvent = new List<bool>();
+
         // 랜덤 요소
         public const float InfluenceRandomPower = 1.5f;
 
 
-        public Event(string eventTitle, string eventDescription)
+        public Event(string eventTitle)
         {
             EventTitle = eventTitle;
-            EventDescription = eventDescription;
         }
 
-        public void AddInfluenceStock(Stock stock)
+        public Event(Event ev)
         {
+            EventTitle = ev.EventTitle;
+            InfluenceStockSize = ev.InfluenceStockSize;
+
+            IsPositiveEvent = ev.IsPositiveEvent.ToList();
+
+            foreach (var infEvent in ev.influenceEvent)
+            {
+                influenceEvent.Add(new Event(infEvent));
+            }
+        }
+
+        public string Title
+        {
+            get
+            {
+                if (InfluenceStockSize == 0) return EventTitle;
+                else
+                {
+                    string[] stockTitle = new string[InfluenceStockSize];
+                    for (int i = 0; i < InfluenceStockSize; i++)
+                    {
+                        stockTitle[i] = influenceStock[i].StockName;
+                    }
+                    return string.Format(EventTitle, stockTitle);
+                }
+            }
+        }
+
+        public bool AddInfluenceStock(Stock stock)
+        {
+            if (influenceStock.Contains(stock)) return false;
+
             influenceStock.Add(stock);
+            if (influenceStock.Count > InfluenceStockSize) InfluenceStockSize = influenceStock.Count;
+
+            foreach (var infEvent in influenceEvent)
+            {
+                if (InfluenceStockSize <= infEvent.InfluenceStockSize)
+                    infEvent.AddInfluenceStock(stock);
+            }
+
+            return true;
+        }
+
+        public void AddInfluenceEvent(Event ev)
+        {
+            influenceEvent.Add(ev);
+        }
+
+        public void UpdateInfluenceEvent()
+        {
+            foreach (var infEvent in influenceEvent)
+            {
+                for (int i = InfluenceStockSize; i < infEvent.InfluenceStockSize;)
+                {
+                    if (infEvent.AddInfluenceStock(KWM.Instance.GetRandomStock()))
+                    {
+                        i++;
+                    }
+                }
+            }
+        }
+
+
+        float GetInfluencePower(bool isPositive)
+        {
+            return (isPositive) ? ((float)KWM.random.NextDouble()) * 100f : -(float)KWM.random.NextDouble() * 30f;
         }
 
 
@@ -42,9 +106,19 @@ namespace kwangwoonmoon
         public void StockUpdate()
         {
             Random random = new Random();
-            foreach (Stock stock in influenceStock)
+            if (InfluenceStockSize == 0)
             {
-                stock.AddStockRatio(InfluencePower * (float)random.NextDouble() * InfluenceRandomPower);
+                foreach (Stock stock in KWM.Instance.GetStocks())
+                {
+                    stock.AddStockRatio(GetInfluencePower(IsPositiveEvent[0]) * (float)random.NextDouble() * InfluenceRandomPower);
+                }
+            }
+            else
+            {
+                for(int i = 0; i < InfluenceStockSize; i++)
+                {
+                    influenceStock[i].AddStockRatio(GetInfluencePower(IsPositiveEvent[i]) * (float)random.NextDouble() * InfluenceRandomPower);
+                }
             }
         }
     }
